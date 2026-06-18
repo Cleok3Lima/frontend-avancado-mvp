@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
+import { FaLayerGroup } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { HeaderWrapper, Logo, Nav, NavLinkStyled } from "./HeaderNavegacao.styles";
+import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from "./HeaderNavegacao.styles";
 
 export function HeaderNavegacao() {
   const location = useLocation();
@@ -13,7 +14,12 @@ export function HeaderNavegacao() {
 
   return (
     <HeaderWrapper>
-      <Logo>CardMaster</Logo>
+      <LogoWrapper>
+        <LogoBadge>
+          <FaLayerGroup aria-hidden="true" />
+        </LogoBadge>
+        <Logo>CardMaster</Logo>
+      </LogoWrapper>
       <Nav>
         <NavLinkStyled to="/" $active={isHomeActive}>
           Início
