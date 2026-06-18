@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { HeaderNavegacao } from "../components/HeaderNavegacao/HeaderNavegacao";
 
 export function MainLayout() {
   return (
     <div>
-      <header>CardMaster (header placeholder — replaced by HeaderNavegacao in Task 7)</header>
+      <HeaderNavegacao />
       <main>
         <Outlet />
       </main>
