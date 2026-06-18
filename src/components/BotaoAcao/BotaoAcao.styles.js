@@ -1,34 +1,22 @@
 import styled, { css } from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 const variantes = {
   primary: css`
-    background-color: #2563eb;
-    color: #fff;
-    &:hover {
-      background-color: #1d4ed8;
-    }
+    background-color: ${tokens.colors.sunshine};
+    color: ${tokens.colors.ink};
   `,
   secondary: css`
-    background-color: #e5e7eb;
-    color: #1f2937;
-    &:hover {
-      background-color: #d1d5db;
-    }
+    background-color: ${tokens.colors.surface};
+    color: ${tokens.colors.ink};
   `,
   danger: css`
-    background-color: #dc2626;
-    color: #fff;
-    &:hover {
-      background-color: #b91c1c;
-    }
+    background-color: ${tokens.colors.coral};
+    color: ${tokens.colors.ink};
   `,
   ghost: css`
     background-color: transparent;
-    color: #2563eb;
-    border: 1px solid #2563eb;
-    &:hover {
-      background-color: #eff6ff;
-    }
+    color: ${tokens.colors.ink};
   `,
 };
 
@@ -36,22 +24,32 @@ export const Botao = styled.button`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.1rem;
-  border: none;
-  border-radius: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.pill};
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.05s ease;
+  box-shadow: ${tokens.shadow.hardSm};
+  transition: transform 0.05s ease, box-shadow 0.05s ease, filter 0.15s ease;
 
   ${(props) => variantes[props.$variante] || variantes.primary}
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.96);
+  }
+
+  &:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  &:active:not(:disabled) {
-    transform: scale(0.97);
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 `;
