@@ -1,6 +1,7 @@
-import { FaCheck, FaTimes } from "react-icons/fa";
+import { FaCheck, FaTimes, FaListUl, FaCheckCircle, FaClock } from "react-icons/fa";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
+import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 
 export function Home() {
   return (
@@ -23,6 +24,17 @@ export function Home() {
       <Tooltip texto="Isto é uma dica explicativa">
         <BotaoAcao variante="secondary">Passe o mouse aqui</BotaoAcao>
       </Tooltip>
+      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}>
+        <CardEstatistica titulo="Total Cards" valor={60} cor="#2563eb" icone={FaListUl} />
+        <CardEstatistica
+          titulo="Mastered"
+          valor={2}
+          cor="#16a34a"
+          icone={FaCheckCircle}
+          dica="Cards que você já acertou"
+        />
+        <CardEstatistica titulo="In Progress" valor={1} cor="#f59e0b" icone={FaClock} />
+      </div>
     </div>
   );
 }

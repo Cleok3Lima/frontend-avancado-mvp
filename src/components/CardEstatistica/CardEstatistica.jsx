@@ -1,0 +1,20 @@
+import { Card, IconWrapper, Texts, Valor, Titulo } from "./CardEstatistica.styles";
+import { Tooltip } from "../Tooltip/Tooltip";
+
+export function CardEstatistica({ titulo, valor, cor, icone: Icone, dica }) {
+  const conteudoIcone = Icone ? (
+    <IconWrapper>
+      <Icone aria-hidden="true" />
+    </IconWrapper>
+  ) : null;
+
+  return (
+    <Card $cor={cor}>
+      {dica ? <Tooltip texto={dica}>{conteudoIcone}</Tooltip> : conteudoIcone}
+      <Texts>
+        <Valor>{valor}</Valor>
+        <Titulo>{titulo}</Titulo>
+      </Texts>
+    </Card>
+  );
+}
