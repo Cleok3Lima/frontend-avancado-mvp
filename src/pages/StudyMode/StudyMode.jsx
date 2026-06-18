@@ -1,17 +1,24 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaKeyboard } from "react-icons/fa";
+import { FaKeyboard, FaClock, FaCheck, FaTimes } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { FlashcardInterativo } from "../../components/FlashcardInterativo/FlashcardInterativo";
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
+import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
   Titulo,
-  StatsRow,
+  Layout,
+  Painel,
+  Divisor,
+  CategoriaBadge,
   CardArea,
+  StatsHeading,
+  StatsRow,
+  ConclusaoStats,
   AtalhosLegenda,
   ConclusaoBox,
 } from "./StudyMode.styles";
@@ -42,6 +49,7 @@ export function StudyMode() {
   }, [isLoading, inicializada, categoryCards]);
 
   const cartaAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
+  const posicaoAtual = categoryCards.length - fila.length + 1;
 
   function handleAcertar(cardId) {
     markCorrect(cardId);
@@ -109,10 +117,10 @@ export function StudyMode() {
         <ConclusaoBox>
           <h2>Sessão concluída!</h2>
           <p>Você revisou todos os cards desta categoria.</p>
-          <StatsRow>
-            <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor="#16a34a" />
-            <CardEstatistica titulo="Erros" valor={sessao.erros} cor="#dc2626" />
-          </StatsRow>
+          <ConclusaoStats>
+            <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
+            <CardEstatistica titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+          </ConclusaoStats>
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
             <BotaoAcao variante="secondary" onClick={handleEstudarNovamente}>
               Estudar novamente
@@ -130,32 +138,43 @@ export function StudyMode() {
     <Wrapper>
       <Titulo>{categoria?.name || "Categoria"}</Titulo>
 
-      <StatsRow>
-        <CardEstatistica titulo="Restantes" valor={fila.length} cor="#2563eb" />
-        <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor="#16a34a" />
-        <CardEstatistica titulo="Erros" valor={sessao.erros} cor="#dc2626" />
-      </StatsRow>
+      <Layout>
+        <Painel>
+          <CategoriaBadge>{categoria?.name}</CategoriaBadge>
+          <CardArea>
+            <FlashcardInterativo
+              card={cartaAtual}
+              corCategoria={categoria?.color}
+              progresso={`${posicaoAtual}/${categoryCards.length}`}
+              onAcertar={handleAcertar}
+              onErrar={handleErrar}
+            />
+          </CardArea>
 
-      <CardArea>
-        <FlashcardInterativo
-          card={cartaAtual}
-          corCategoria={categoria?.color}
-          onAcertar={handleAcertar}
-          onErrar={handleErrar}
-        />
-      </CardArea>
+          <Divisor />
 
-      <AtalhosLegenda>
-        <Tooltip texto="Espaço ou Enter vira o card; seta direita ou 1 marca acerto; seta esquerda ou 2 marca erro">
-          <span>
-            <FaKeyboard aria-hidden="true" /> Atalhos de teclado disponíveis
-          </span>
-        </Tooltip>
-      </AtalhosLegenda>
+          <AtalhosLegenda>
+            <Tooltip texto="Espaço ou Enter vira o card; seta direita ou 1 marca acerto; seta esquerda ou 2 marca erro">
+              <span>
+                <FaKeyboard aria-hidden="true" /> Atalhos de teclado disponíveis
+              </span>
+            </Tooltip>
+          </AtalhosLegenda>
 
-      <BotaoAcao variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
-        Ver todos os cards desta categoria
-      </BotaoAcao>
+          <BotaoAcao variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
+            Ver todos os cards desta categoria
+          </BotaoAcao>
+        </Painel>
+
+        <Painel style={{ textAlign: "left" }}>
+          <StatsHeading>Estatísticas</StatsHeading>
+          <StatsRow>
+            <CardEstatistica titulo="Restantes" valor={fila.length} cor={tokens.colors.periwinkle} icone={FaClock} />
+            <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
+            <CardEstatistica titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+          </StatsRow>
+        </Painel>
+      </Layout>
     </Wrapper>
   );
 }
