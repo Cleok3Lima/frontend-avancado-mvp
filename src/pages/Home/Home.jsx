@@ -2,6 +2,7 @@ import { FaCheck, FaTimes, FaListUl, FaCheckCircle, FaClock } from "react-icons/
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 export function Home() {
   return (
@@ -35,6 +36,7 @@ export function Home() {
         />
         <CardEstatistica titulo="In Progress" valor={1} cor="#f59e0b" icone={FaClock} />
       </div>
+      <EmptyState mensagem="Nenhum cartão encontrado nesta categoria" />
     </div>
   );
 }
