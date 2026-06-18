@@ -1,5 +1,6 @@
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
+import { Tooltip } from "../../components/Tooltip/Tooltip";
 
 export function Home() {
   return (
@@ -19,6 +20,9 @@ export function Home() {
       <BotaoAcao variante="primary" disabled>
         Desabilitado
       </BotaoAcao>
+      <Tooltip texto="Isto é uma dica explicativa">
+        <BotaoAcao variante="secondary">Passe o mouse aqui</BotaoAcao>
+      </Tooltip>
     </div>
   );
 }
