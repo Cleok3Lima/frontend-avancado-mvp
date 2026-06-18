@@ -5,9 +5,12 @@ import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
 import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
+import { useFlashcards } from "../../context/FlashcardsContext";
+import { CategoryCard } from "../../components/CategoryCard/CategoryCard";
 
 export function Home() {
   const [modalAberto, setModalAberto] = useState(false);
+  const { categories, isLoading } = useFlashcards();
 
   return (
     <div style={{ padding: "1rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -54,6 +57,11 @@ export function Home() {
         }}
         onCancelar={() => setModalAberto(false)}
       />
+      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "1rem" }}>
+        {!isLoading && categories.map((categoria) => (
+          <CategoryCard key={categoria.id} categoria={categoria} />
+        ))}
+      </div>
     </div>
   );
 }
