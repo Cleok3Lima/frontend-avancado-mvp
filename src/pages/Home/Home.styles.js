@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding: 1.5rem;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 export const Titulo = styled.h1`

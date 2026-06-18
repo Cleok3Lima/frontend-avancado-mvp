@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   padding: 1.5rem;
   text-align: center;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 export const Titulo = styled.h1`

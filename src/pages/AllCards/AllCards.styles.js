@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 1.5rem;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 export const Titulo = styled.h1`
@@ -59,4 +63,8 @@ export const CardsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 `;
