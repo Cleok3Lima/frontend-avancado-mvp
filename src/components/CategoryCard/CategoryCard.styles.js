@@ -1,35 +1,46 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background-color: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
+  background-color: ${tokens.colors.surface};
+  border: 2px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.sm};
+  box-shadow: ${tokens.shadow.hardSm};
   padding: 1.25rem 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   text-align: center;
 `;
 
 export const IconWrapper = styled.div`
-  font-size: 2rem;
-  color: ${(props) => props.$cor || "#2563eb"};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  color: ${tokens.colors.ink};
+  background-color: ${(props) => props.$cor || tokens.colors.periwinkle};
+  border: 2px solid ${tokens.colors.ink};
 `;
 
 export const Nome = styled.h3`
-  margin: 0;
   font-size: 1.05rem;
-  color: #1f2937;
+  color: ${tokens.colors.ink};
 `;
 
 export const Stats = styled.span`
   font-size: 0.85rem;
-  color: #6b7280;
+  color: ${tokens.colors.ink};
+  opacity: 0.7;
 `;
 
 export const Acoes = styled.div`
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
