@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { FaCheck, FaTimes, FaListUl, FaCheckCircle, FaClock } from "react-icons/fa";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 
 export function Home() {
+  const [modalAberto, setModalAberto] = useState(false);
+
   return (
     <div style={{ padding: "1rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
       <BotaoAcao variante="primary" icone={FaCheck} onClick={() => console.log("primary clicado")}>
@@ -37,6 +41,19 @@ export function Home() {
         <CardEstatistica titulo="In Progress" valor={1} cor="#f59e0b" icone={FaClock} />
       </div>
       <EmptyState mensagem="Nenhum cartão encontrado nesta categoria" />
+      <BotaoAcao variante="danger" onClick={() => setModalAberto(true)}>
+        Abrir modal de teste
+      </BotaoAcao>
+      <ConfirmModal
+        aberto={modalAberto}
+        titulo="Confirmar ação"
+        mensagem="Isto é apenas um teste do ConfirmModal."
+        onConfirmar={() => {
+          console.log("confirmado");
+          setModalAberto(false);
+        }}
+        onCancelar={() => setModalAberto(false)}
+      />
     </div>
   );
 }
