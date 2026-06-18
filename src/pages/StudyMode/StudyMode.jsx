@@ -137,7 +137,12 @@ export function StudyMode() {
       </StatsRow>
 
       <CardArea>
-        <FlashcardInterativo card={cartaAtual} onAcertar={handleAcertar} onErrar={handleErrar} />
+        <FlashcardInterativo
+          card={cartaAtual}
+          corCategoria={categoria?.color}
+          onAcertar={handleAcertar}
+          onErrar={handleErrar}
+        />
       </CardArea>
 
       <AtalhosLegenda>

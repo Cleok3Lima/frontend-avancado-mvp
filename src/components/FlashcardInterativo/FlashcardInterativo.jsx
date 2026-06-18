@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
-import { FaCheck, FaTimes, FaSyncAlt } from "react-icons/fa";
+import { FaCheck, FaTimes, FaSyncAlt, FaStar } from "react-icons/fa";
 import { BotaoAcao } from "../BotaoAcao/BotaoAcao";
-import { CardWrapper, StatusBadge, Face, Acoes } from "./FlashcardInterativo.styles";
+import {
+  CardWrapper,
+  SparkleSuperior,
+  SparkleInferior,
+  SparkleComemoracao,
+  StatusBadge,
+  Face,
+  Dica,
+  Progresso,
+  Acoes,
+} from "./FlashcardInterativo.styles";
 
 const STATUS_LABEL = {
   new: "Novo",
@@ -9,15 +19,27 @@ const STATUS_LABEL = {
   mastered: "Dominado",
 };
 
-export function FlashcardInterativo({ card, modoLeitura = false, onAcertar, onErrar }) {
+export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura = false, onAcertar, onErrar }) {
   const [virado, setVirado] = useState(false);
+  const [comemorando, setComemorando] = useState(false);
 
   useEffect(() => {
     setVirado(false);
   }, [card.id]);
 
+  useEffect(() => {
+    if (!comemorando) return;
+    const timer = setTimeout(() => setComemorando(false), 400);
+    return () => clearTimeout(timer);
+  }, [comemorando]);
+
   function handleVirar() {
     setVirado((atual) => !atual);
+  }
+
+  function handleAcertarClick() {
+    setComemorando(true);
+    onAcertar(card.id);
   }
 
   useEffect(() => {
@@ -36,9 +58,17 @@ export function FlashcardInterativo({ card, modoLeitura = false, onAcertar, onEr
 
   return (
     <div>
-      <CardWrapper onClick={handleVirar} role="button" tabIndex={0} $virado={virado}>
-        <StatusBadge $status={card.status}>{STATUS_LABEL[card.status]}</StatusBadge>
+      <CardWrapper onClick={handleVirar} role="button" tabIndex={0} $cor={corCategoria}>
+        <SparkleSuperior aria-hidden="true" />
+        <SparkleInferior aria-hidden="true" />
+        {comemorando && <SparkleComemoracao aria-hidden="true" />}
+        <StatusBadge $status={card.status}>
+          {card.status === "mastered" && <FaStar aria-hidden="true" />}
+          {STATUS_LABEL[card.status]}
+        </StatusBadge>
         <Face>{virado ? card.answer : card.question}</Face>
+        {!virado && <Dica>Clique para virar</Dica>}
+        {progresso && <Progresso>{progresso}</Progresso>}
       </CardWrapper>
 
       {!modoLeitura && (
@@ -46,7 +76,7 @@ export function FlashcardInterativo({ card, modoLeitura = false, onAcertar, onEr
           <BotaoAcao variante="secondary" icone={FaSyncAlt} onClick={handleVirar}>
             Virar
           </BotaoAcao>
-          <BotaoAcao variante="primary" icone={FaCheck} onClick={() => onAcertar(card.id)}>
+          <BotaoAcao variante="primary" icone={FaCheck} onClick={handleAcertarClick}>
             Acertei
           </BotaoAcao>
           <BotaoAcao variante="danger" icone={FaTimes} onClick={() => onErrar(card.id)}>

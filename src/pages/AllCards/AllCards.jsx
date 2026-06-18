@@ -100,7 +100,7 @@ export function AllCards() {
       ) : (
         <CardsGrid>
           {cardsFiltrados.map((card) => (
-            <FlashcardInterativo key={card.id} card={card} modoLeitura />
+            <FlashcardInterativo key={card.id} card={card} corCategoria={categoria?.color} modoLeitura />
           ))}
         </CardsGrid>
       )}

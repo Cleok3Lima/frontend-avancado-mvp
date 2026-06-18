@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import { FaStar } from "react-icons/fa";
+import { tokens } from "../../styles/tokens";
 
 export const CardWrapper = styled.div`
-  background-color: ${(props) => (props.$virado ? "#eff6ff" : "#fff")};
-  border: 2px solid ${(props) => (props.$virado ? "#2563eb" : "#e5e7eb")};
-  border-radius: 1rem;
-  min-height: 180px;
+  position: relative;
+  background-color: ${(props) => props.$cor || tokens.colors.bubblegum};
+  background-image: linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border: 3px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.sm};
+  box-shadow: ${tokens.shadow.hard};
+  min-height: 220px;
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
@@ -13,33 +20,102 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   cursor: pointer;
-  position: relative;
   text-align: center;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
 
-  @media (max-width: 480px) {
-    min-height: 140px;
-    padding: 1rem;
+  @media (max-width: 640px) {
+    min-height: 160px;
+    padding: 1.25rem;
+  }
+`;
+
+export const SparkleSuperior = styled(FaStar)`
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  font-size: 1.1rem;
+  color: ${tokens.colors.surface};
+  opacity: 0.85;
+`;
+
+export const SparkleInferior = styled(FaStar)`
+  position: absolute;
+  bottom: 0.85rem;
+  left: 1rem;
+  font-size: 0.85rem;
+  color: ${tokens.colors.surface};
+  opacity: 0.85;
+`;
+
+export const SparkleComemoracao = styled(FaStar)`
+  position: absolute;
+  top: 0.85rem;
+  left: 1rem;
+  font-size: 1.3rem;
+  color: ${tokens.colors.sunshine};
+  animation: pop 0.4s ease;
+
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0;
   }
 `;
 
 export const StatusBadge = styled.span`
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  color: #fff;
-  background-color: ${(props) =>
-    props.$status === "mastered" ? "#16a34a" : props.$status === "in_progress" ? "#f59e0b" : "#6b7280"};
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border: 2px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.pill};
+  background-color: ${tokens.colors.surface};
+  color: ${tokens.colors.ink};
 `;
 
 export const Face = styled.p`
-  font-size: 1.1rem;
-  color: #1f2937;
+  font-family: ${tokens.fonts.display};
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: ${tokens.colors.ink};
   margin: 0;
+`;
+
+export const Dica = styled.span`
+  font-size: 0.85rem;
+  color: ${tokens.colors.ink};
+  opacity: 0.7;
+`;
+
+export const Progresso = styled.span`
+  position: absolute;
+  bottom: 0.85rem;
+  right: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: ${tokens.colors.ink};
+  background-color: ${tokens.colors.surface};
+  border: 2px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.pill};
+  padding: 0.15rem 0.6rem;
 `;
 
 export const Acoes = styled.div`
