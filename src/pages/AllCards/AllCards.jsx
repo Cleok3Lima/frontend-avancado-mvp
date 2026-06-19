@@ -6,6 +6,7 @@ import { FlashcardInterativo } from "../../components/FlashcardInterativo/Flashc
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
   Titulo,
@@ -68,8 +69,8 @@ export function AllCards() {
       <Titulo>{categoria?.name || "Categoria"}</Titulo>
 
       <StatsRow>
-        <CardEstatistica titulo="Total" valor={stats.total} cor="#2563eb" icone={FaListUl} />
-        <CardEstatistica titulo="Dominados" valor={stats.mastered} cor="#16a34a" icone={FaCheckCircle} />
+        <CardEstatistica titulo="Total" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
+        <CardEstatistica titulo="Dominados" valor={stats.mastered} cor={tokens.colors.mint} icone={FaCheckCircle} />
       </StatsRow>
 
       <Filtros>
