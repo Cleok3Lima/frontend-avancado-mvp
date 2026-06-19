@@ -1,18 +1,19 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const Wrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding: 1.5rem;
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     padding: 1rem;
   }
 `;
 
 export const Titulo = styled.h1`
-  margin: 0 0 1.5rem;
-  color: #1f2937;
+  color: ${tokens.colors.ink};
+  margin-bottom: 1.5rem;
 `;
 
 export const StatsRow = styled.div`
@@ -31,7 +32,7 @@ export const ResetRow = styled.div`
 `;
 
 export const SuccessMessage = styled.span`
-  color: #16a34a;
+  color: ${tokens.colors.ink};
   font-weight: 600;
 `;
 
@@ -43,7 +44,8 @@ export const CategoriesGrid = styled.div`
 
 export const LoadingMessage = styled.p`
   text-align: center;
-  color: #6b7280;
+  color: ${tokens.colors.ink};
+  opacity: 0.7;
   font-size: 1.1rem;
   padding: 3rem 0;
 `;
@@ -54,5 +56,6 @@ export const ErrorBox = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 3rem 0;
-  color: #dc2626;
+  color: ${tokens.colors.coral};
+  font-weight: 600;
 `;

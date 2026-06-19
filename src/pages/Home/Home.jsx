@@ -6,6 +6,7 @@ import { CategoryCard } from "../../components/CategoryCard/CategoryCard";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
+import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
   Titulo,
@@ -55,18 +56,18 @@ export function Home() {
       <Titulo>Bem-vindo ao CardMaster</Titulo>
 
       <StatsRow>
-        <CardEstatistica titulo="Total Cards" valor={stats.total} cor="#2563eb" icone={FaListUl} />
+        <CardEstatistica titulo="Total Cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
         <CardEstatistica
           titulo="Mastered"
           valor={stats.mastered}
-          cor="#16a34a"
+          cor={tokens.colors.mint}
           icone={FaCheckCircle}
           dica="Cards que você já dominou"
         />
         <CardEstatistica
           titulo="In Progress"
           valor={stats.inProgress}
-          cor="#f59e0b"
+          cor={tokens.colors.sunshine}
           icone={FaClock}
           dica="Cards que você já errou pelo menos uma vez"
         />
