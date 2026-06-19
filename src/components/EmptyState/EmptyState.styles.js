@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,7 +8,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   gap: 0.75rem;
   padding: 3rem 1rem;
-  color: #6b7280;
+  color: ${tokens.colors.ink};
+  opacity: 0.7;
   text-align: center;
 `;
 

@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(26, 26, 26, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,8 +12,10 @@ export const Overlay = styled.div`
 `;
 
 export const ModalBox = styled.div`
-  background-color: #fff;
-  border-radius: 0.75rem;
+  background-color: ${tokens.colors.surface};
+  border: 3px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.sm};
+  box-shadow: ${tokens.shadow.hard};
   padding: 1.5rem;
   max-width: 360px;
   width: 90%;
@@ -21,22 +24,22 @@ export const ModalBox = styled.div`
   align-items: center;
   gap: 0.5rem;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 `;
 
 export const IconWrapper = styled.div`
   font-size: 2rem;
-  color: #dc2626;
+  color: ${tokens.colors.coral};
 `;
 
 export const Titulo = styled.h2`
-  margin: 0;
   font-size: 1.1rem;
+  color: ${tokens.colors.ink};
 `;
 
 export const Mensagem = styled.p`
   margin: 0;
-  color: #4b5563;
+  color: ${tokens.colors.ink};
+  opacity: 0.75;
   font-size: 0.9rem;
 `;
 

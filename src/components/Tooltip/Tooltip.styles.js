@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const TooltipWrapper = styled.span`
   position: relative;
@@ -18,10 +19,10 @@ export const TooltipText = styled.span`
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #111827;
-  color: #fff;
+  background-color: ${tokens.colors.ink};
+  color: ${tokens.colors.surface};
   padding: 0.35rem 0.6rem;
-  border-radius: 0.35rem;
+  border-radius: 0.5rem;
   font-size: 0.75rem;
   white-space: nowrap;
   opacity: 0;

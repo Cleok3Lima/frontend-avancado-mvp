@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { tokens } from "../../styles/tokens";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -12,15 +13,16 @@ export const Wrapper = styled.div`
 
 export const IconWrapper = styled.div`
   font-size: 3rem;
-  color: #f59e0b;
+  color: ${tokens.colors.sunshine};
 `;
 
 export const Titulo = styled.h1`
   margin: 0;
-  color: #1f2937;
+  color: ${tokens.colors.ink};
 `;
 
 export const Mensagem = styled.p`
   margin: 0;
-  color: #6b7280;
+  color: ${tokens.colors.ink};
+  opacity: 0.7;
 `;
