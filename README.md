@@ -83,6 +83,20 @@ O protótipo é a própria aplicação, que roda localmente seguindo os passos a
 | `/cards/:categoryId` | All Cards da categoria |
 | qualquer outra | Página 404 |
 
+### Capturas de tela
+
+**Home (Dashboard):** estatísticas gerais e o progresso de cada categoria.
+
+![Home com as estatísticas gerais e os cards de categoria](screenshots/home.jpg)
+
+**Study Mode:** sessão em andamento, com o placar de cartões restantes, acertos e erros.
+
+![Study Mode da categoria JavaScript com uma sessão em andamento](screenshots/study-mode.jpg)
+
+**All Cards:** busca, filtro por status e um cartão virado mostrando a resposta.
+
+![All Cards da categoria JavaScript com cartões em status diferentes](screenshots/all-cards.jpg)
+
 ### Pré-requisitos
 
 - [Node.js](https://nodejs.org/) versão 20.19 ou superior (ou 22.12 ou superior), exigida pelo Vite 8
@@ -92,7 +106,7 @@ O protótipo é a própria aplicação, que roda localmente seguindo os passos a
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/Cleok3Lima/frontend-avancado-mvp.git
    cd frontend-avancado-mvp
    ```
 2. Instale as dependências:
