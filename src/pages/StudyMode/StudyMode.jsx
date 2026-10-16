@@ -49,7 +49,7 @@ export function StudyMode() {
     }
   }, [isLoading, inicializada, categoryCards]);
 
-  const cartaAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
+  const cardAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
 
   function handleAcertar(cardId) {
     markCorrect(cardId);
@@ -70,17 +70,17 @@ export function StudyMode() {
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (!cartaAtual) return;
+      if (!cardAtual) return;
       if (e.code === "ArrowRight" || e.code === "Digit1") {
-        handleAcertar(cartaAtual.id);
+        handleAcertar(cardAtual.id);
       } else if (e.code === "ArrowLeft" || e.code === "Digit2") {
-        handleErrar(cartaAtual.id);
+        handleErrar(cardAtual.id);
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [cartaAtual]);
+  }, [cardAtual]);
 
   if (isLoading) {
     return (
@@ -94,7 +94,7 @@ export function StudyMode() {
     return (
       <Wrapper>
         <Titulo>{categoria?.name || "Categoria"}</Titulo>
-        <EmptyState mensagem="Nenhum cartão encontrado nesta categoria" />
+        <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
         <BotaoAcao variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
         </BotaoAcao>
@@ -143,7 +143,7 @@ export function StudyMode() {
           <CategoriaBadge>{categoria?.name}</CategoriaBadge>
           <CardArea>
             <FlashcardInterativo
-              card={cartaAtual}
+              card={cardAtual}
               corCategoria={categoria?.color}
               progresso={`${categoryStats.mastered}/${categoryStats.total} dominados`}
               onAcertar={handleAcertar}

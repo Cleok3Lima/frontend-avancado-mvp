@@ -1,6 +1,6 @@
 # CardMaster
 
-Front-end de uma aplicação de flashcards para estudo, desenvolvida em React como MVP da disciplina de Desenvolvimento Front-end Avançado (PUC-Rio). A aplicação não possui backend: todos os dados de categorias e cartões são lidos de um arquivo JSON local, simulando uma requisição a um servidor.
+Front-end de uma aplicação de flashcards para estudo, desenvolvida em React como MVP da disciplina de Desenvolvimento Front-end Avançado (PUC-Rio). A aplicação não possui backend: todos os dados de categorias e cards são lidos de um arquivo JSON local, simulando uma requisição a um servidor.
 
 Este README segue as etapas de desenvolvimento do MVP: o problema, a **ideia**, a **estrutura**, o **protótipo** e o ciclo de **medir e aprender**.
 
@@ -14,7 +14,7 @@ Estudantes de programação, em especial alunos de cursos técnicos, graduação
 
 ### Por que flashcards
 
-O flashcard obriga a pessoa a tentar lembrar a resposta antes de vê-la (recuperação ativa), o que fixa melhor o conteúdo do que a releitura. O CardMaster soma a isso uma fila de revisão: o cartão marcado como errado volta para o fim da sessão e só sai dela quando for acertado, e o status de cada cartão fica salvo entre as sessões. Assim, o tempo de estudo se concentra no que ainda não foi dominado.
+O flashcard obriga a pessoa a tentar lembrar a resposta antes de vê-la (recuperação ativa), o que fixa melhor o conteúdo do que a releitura. O CardMaster soma a isso uma fila de revisão: o card marcado como errado volta para o fim da sessão e só sai dela quando for acertado, e o status de cada card fica salvo entre as sessões. Assim, o tempo de estudo se concentra no que ainda não foi dominado.
 
 ## Ideia
 
@@ -23,8 +23,8 @@ O flashcard obriga a pessoa a tentar lembrar a resposta antes de vê-la (recuper
 Funcionalidades complementares:
 
 - **Home (Dashboard):** categorias de estudo disponíveis, com o progresso de cada uma ("3/10 dominados"), e estatísticas gerais (total de cards, dominados e em progresso).
-- **Study Mode:** a sessão de estudo, com placar de acertos, erros e cartões restantes, e uma tela de conclusão ao final.
-- **All Cards:** todos os cartões de uma categoria, com busca por texto (pergunta ou resposta) combinada com filtro por status (Novo, Em progresso, Dominado).
+- **Study Mode:** a sessão de estudo, com placar de acertos, erros e cards restantes, e uma tela de conclusão ao final.
+- **All Cards:** todos os cards de uma categoria, com busca por texto (pergunta ou resposta) combinada com filtro por status (Novo, Em progresso, Dominado).
 - **Atalhos de teclado no Study Mode:** Espaço ou Enter vira o card, seta direita (ou `1`) marca acerto, seta esquerda (ou `2`) marca erro.
 - **Reiniciar progresso:** botão na Home que apaga o progresso salvo, com confirmação antes de apagar.
 - **Página 404:** mensagem amigável para rotas inexistentes, com atalho de volta para a Home.
@@ -41,7 +41,7 @@ Funcionalidades complementares:
 | [styled-components](https://styled-components.com/) | Estilo escrito junto do componente, sem conflito de nomes de classe, e variando por props (por exemplo, a cor da categoria no card e as variantes do botão). |
 | [react-icons](https://react-icons.github.io/react-icons/) | Ícones como componentes React; o JSON indica o nome do ícone de cada categoria. |
 | JSON local (`public/data/flashcards.json`) | Simula a API: é carregado com `fetch` e um atraso artificial, com estados de carregamento e erro, para que a aplicação já esteja preparada para receber um backend real. |
-| `localStorage` | Guarda o status de cada cartão no próprio navegador, mantendo o progresso entre as sessões sem precisar de servidor. |
+| `localStorage` | Guarda o status de cada card no próprio navegador, mantendo o progresso entre as sessões sem precisar de servidor. |
 | [ESLint](https://eslint.org/) | Análise estática, incluindo as regras de uso correto dos hooks do React. |
 
 ### Organização do código
@@ -57,13 +57,13 @@ src/
 └── styles/       tokens de design (cores, fontes, raios de borda e sombras) e estilos globais
 ```
 
-Os dados seguem um caminho único: o hook `useFlashcardsData` carrega o JSON e junta cada cartão com o status salvo no `localStorage`; o `FlashcardsContext` entrega esse resultado às páginas, que leem os dados e chamam as ações (`markCorrect`, `markWrong`, `resetProgress`) sem passar props por vários níveis.
+Os dados seguem um caminho único: o hook `useFlashcardsData` carrega o JSON e junta cada card com o status salvo no `localStorage`; o `FlashcardsContext` entrega esse resultado às páginas, que leem os dados e chamam as ações (`markCorrect`, `markWrong`, `resetProgress`) sem passar props por vários níveis.
 
 ### Componentes reutilizáveis
 
 - `BotaoAcao`: botão padronizado com variantes de estilo (primário, secundário, perigo e discreto) e ícone opcional, usado em todas as páginas.
 - `CardEstatistica`: bloco de estatística com título, valor, cor, ícone e dica configuráveis via props.
-- `CategoryCard`: card de categoria com ícone, progresso e atalhos para estudar ou ver os cartões.
+- `CategoryCard`: card de categoria com ícone, progresso e atalhos para estudar ou ver os cards.
 - `ConfirmModal`: modal de confirmação para ações que não podem ser desfeitas.
 - `EmptyState`: mensagem para listas vazias ou buscas sem resultado.
 - `FlashcardInterativo`: card de pergunta e resposta que vira ao clicar; reutilizado em modo interativo (Study Mode) e em modo somente leitura (All Cards).
@@ -89,13 +89,13 @@ O protótipo é a própria aplicação, que roda localmente seguindo os passos a
 
 ![Home com as estatísticas gerais e os cards de categoria](screenshots/home.jpg)
 
-**Study Mode:** sessão em andamento, com o placar de cartões restantes, acertos e erros.
+**Study Mode:** sessão em andamento, com o placar de cards restantes, acertos e erros.
 
 ![Study Mode da categoria JavaScript com uma sessão em andamento](screenshots/study-mode.jpg)
 
-**All Cards:** busca, filtro por status e um cartão virado mostrando a resposta.
+**All Cards:** busca, filtro por status e um card virado mostrando a resposta.
 
-![All Cards da categoria JavaScript com cartões em status diferentes](screenshots/all-cards.jpg)
+![All Cards da categoria JavaScript com cards em status diferentes](screenshots/all-cards.jpg)
 
 ### Pré-requisitos
 
@@ -134,16 +134,16 @@ O MVP fecha o ciclo construir, medir e aprender: a própria aplicação registra
 
 ### O que a aplicação mede
 
-- **Por cartão:** o status de cada um (Novo, Em progresso ou Dominado), salvo entre as sessões.
-- **Por categoria:** quantos cartões já foram dominados em relação ao total.
-- **No geral:** total de cartões, quantos foram dominados e quantos estão em progresso (já errados ao menos uma vez).
-- **Por sessão:** acertos, erros e cartões restantes, com o resumo exibido ao concluir.
+- **Por card:** o status de cada um (Novo, Em progresso ou Dominado), salvo entre as sessões.
+- **Por categoria:** quantos cards já foram dominados em relação ao total.
+- **No geral:** total de cards, quantos foram dominados e quantos estão em progresso (já errados ao menos uma vez).
+- **Por sessão:** acertos, erros e cards restantes, com o resumo exibido ao concluir.
 
 ### Próximos passos
 
 O que os dados acima mostram sobre os limites desta versão, e o que viria nas próximas:
 
-- **Repetição espaçada por data:** hoje um único acerto marca o cartão como dominado. A próxima versão agendaria revisões em intervalos crescentes (1 dia, 3 dias, 1 semana), para confirmar que o conteúdo foi realmente fixado.
+- **Repetição espaçada por data:** hoje um único acerto marca o card como dominado. A próxima versão agendaria revisões em intervalos crescentes (1 dia, 3 dias, 1 semana), para confirmar que o conteúdo foi realmente fixado.
 - **Histórico de sessões:** guardar o placar de cada sessão para mostrar a evolução ao longo do tempo, e não só o estado atual.
-- **Cartões próprios:** permitir criar, editar e excluir cartões e categorias, para que cada pessoa estude o próprio conteúdo.
+- **Cards próprios:** permitir criar, editar e excluir cards e categorias, para que cada pessoa estude o próprio conteúdo.
 - **Backend e contas de usuário:** substituir o JSON local por uma API e o `localStorage` por um banco de dados, para sincronizar o progresso entre dispositivos. Como o carregamento já é feito via `fetch`, a troca fica concentrada no hook `useFlashcardsData`.

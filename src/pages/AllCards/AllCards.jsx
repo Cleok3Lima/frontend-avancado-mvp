@@ -56,7 +56,7 @@ export function AllCards() {
     return (
       <Wrapper>
         <Titulo>{categoria?.name || "Categoria"}</Titulo>
-        <EmptyState mensagem="Nenhum cartão encontrado nesta categoria" />
+        <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
         <BotaoAcao variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
         </BotaoAcao>
@@ -97,7 +97,7 @@ export function AllCards() {
       </Filtros>
 
       {cardsFiltrados.length === 0 ? (
-        <EmptyState mensagem="Nenhum cartão encontrado com esses filtros" />
+        <EmptyState mensagem="Nenhum card encontrado com esses filtros" />
       ) : (
         <CardsGrid>
           {cardsFiltrados.map((card) => (
