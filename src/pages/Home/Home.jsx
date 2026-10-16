@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaListUl, FaCheckCircle, FaClock, FaRedo } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
@@ -22,12 +22,16 @@ export function Home() {
   const { categories, stats, isLoading, error, reloadData, resetProgress } = useFlashcards();
   const [modalAberto, setModalAberto] = useState(false);
   const [mensagemSucesso, setMensagemSucesso] = useState("");
+  const timerMensagemRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(timerMensagemRef.current), []);
 
   function handleConfirmarReset() {
     resetProgress();
     setModalAberto(false);
     setMensagemSucesso("Progresso reiniciado com sucesso!");
-    setTimeout(() => setMensagemSucesso(""), 3000);
+    clearTimeout(timerMensagemRef.current);
+    timerMensagemRef.current = setTimeout(() => setMensagemSucesso(""), 3000);
   }
 
   if (isLoading) {
