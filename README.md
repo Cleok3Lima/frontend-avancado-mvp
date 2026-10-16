@@ -2,6 +2,18 @@
 
 Front-end de uma aplicação de flashcards para estudo, desenvolvida em React como MVP da disciplina de Desenvolvimento Front-end Avançado (PUC-Rio). A aplicação não possui backend: todos os dados de categorias e cartões são lidos de um arquivo JSON local, simulando uma requisição a um servidor.
 
+## Problema e necessidade
+
+Quem estuda tecnologia precisa fixar muitos conceitos ao mesmo tempo: sintaxe, comandos, definições e boas práticas de áreas diferentes. Reler anotações e slides é cansativo e dá uma falsa sensação de domínio, porque reconhecer um texto conhecido é bem mais fácil do que lembrar do conteúdo sem consulta. Além disso, falta uma forma simples de saber o que já foi aprendido e o que ainda precisa de revisão.
+
+### Público-alvo
+
+Estudantes de programação, em especial alunos de cursos técnicos, graduação e pós-graduação em tecnologia, que precisam revisar conceitos de várias disciplinas em pouco tempo.
+
+### Por que flashcards
+
+O flashcard obriga a pessoa a tentar lembrar a resposta antes de vê-la (recuperação ativa), o que fixa melhor o conteúdo do que a releitura. O CardMaster soma a isso uma fila de revisão: o cartão marcado como errado volta para o fim da sessão e só sai dela quando for acertado, e o status de cada cartão fica salvo entre as sessões. Assim, o tempo de estudo se concentra no que ainda não foi dominado.
+
 ## Funcionalidades
 
 - **Home (Dashboard):** visão geral das categorias de estudo disponíveis e estatísticas gerais (Total Cards, Mastered, In Progress).
