@@ -6,6 +6,7 @@ import { FlashcardInterativo } from "../../components/FlashcardInterativo/Flashc
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { NotFound } from "../NotFound/NotFound";
 import { tokens } from "../../styles/tokens";
 import {
@@ -28,7 +29,7 @@ const FILTROS_STATUS = [
 export function AllCards() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  const { categories, getCardsByCategory, getCategoryStats, isLoading, error } = useFlashcards();
+  const { categories, getCardsByCategory, getCategoryStats, isLoading, error, reloadData } = useFlashcards();
 
   const [busca, setBusca] = useState("");
   const [statusFiltro, setStatusFiltro] = useState("todos");
@@ -53,7 +54,15 @@ export function AllCards() {
     );
   }
 
-  if (!categoria && !error) {
+  if (error) {
+    return (
+      <Wrapper>
+        <ErrorState onTentarNovamente={reloadData} />
+      </Wrapper>
+    );
+  }
+
+  if (!categoria) {
     return <NotFound />;
   }
 

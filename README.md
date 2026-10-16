@@ -66,6 +66,7 @@ Os dados seguem um caminho único: o hook `useFlashcardsData` carrega o JSON e j
 - `CategoryCard`: card de categoria com ícone, progresso e atalhos para estudar ou ver os cards.
 - `ConfirmModal`: modal de confirmação para ações que não podem ser desfeitas.
 - `EmptyState`: mensagem para listas vazias ou buscas sem resultado.
+- `ErrorState`: mensagem de erro de carregamento com o botão "Tentar novamente", usada nas três páginas que dependem dos dados.
 - `FlashcardInterativo`: card de pergunta e resposta que vira ao clicar; reutilizado em modo interativo (Study Mode) e em modo somente leitura (All Cards).
 - `HeaderNavegacao`: cabeçalho com logo e navegação, com o link ativo destacado via `useLocation`.
 - `Tooltip`: dica exibida ao passar o mouse ou focar o elemento pelo teclado.

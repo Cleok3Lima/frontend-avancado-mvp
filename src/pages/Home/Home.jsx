@@ -6,6 +6,7 @@ import { CategoryCard } from "../../components/CategoryCard/CategoryCard";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
+import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
@@ -15,7 +16,6 @@ import {
   SuccessMessage,
   CategoriesGrid,
   LoadingMessage,
-  ErrorBox,
 } from "./Home.styles";
 
 export function Home() {
@@ -41,12 +41,7 @@ export function Home() {
   if (error) {
     return (
       <Wrapper>
-        <ErrorBox>
-          <p>Erro ao carregar os dados: {error}</p>
-          <BotaoAcao variante="primary" onClick={reloadData}>
-            Tentar novamente
-          </BotaoAcao>
-        </ErrorBox>
+        <ErrorState onTentarNovamente={reloadData} />
       </Wrapper>
     );
   }

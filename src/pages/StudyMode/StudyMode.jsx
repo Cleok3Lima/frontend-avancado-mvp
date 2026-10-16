@@ -6,6 +6,7 @@ import { FlashcardInterativo } from "../../components/FlashcardInterativo/Flashc
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { NotFound } from "../NotFound/NotFound";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { tokens } from "../../styles/tokens";
@@ -27,7 +28,7 @@ import {
 export function StudyMode() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading, error } = useFlashcards();
+  const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading, error, reloadData } = useFlashcards();
 
   const categoria = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
@@ -44,11 +45,11 @@ export function StudyMode() {
   }, [categoryId]);
 
   useEffect(() => {
-    if (!isLoading && !inicializada) {
+    if (!isLoading && !error && !inicializada) {
       setFila(categoryCards.map((card) => card.id));
       setInicializada(true);
     }
-  }, [isLoading, inicializada, categoryCards]);
+  }, [isLoading, error, inicializada, categoryCards]);
 
   const cardAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
 
@@ -97,7 +98,15 @@ export function StudyMode() {
     );
   }
 
-  if (!categoria && !error) {
+  if (error) {
+    return (
+      <Wrapper>
+        <ErrorState onTentarNovamente={reloadData} />
+      </Wrapper>
+    );
+  }
+
+  if (!categoria) {
     return <NotFound />;
   }
 

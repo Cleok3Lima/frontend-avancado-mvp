@@ -34,6 +34,7 @@ export function useFlashcardsData() {
         setIsLoading(false);
       })
       .catch((err) => {
+        console.error(err);
         setError(err.message);
         setIsLoading(false);
       });
