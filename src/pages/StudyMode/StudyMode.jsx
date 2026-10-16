@@ -6,6 +6,7 @@ import { FlashcardInterativo } from "../../components/FlashcardInterativo/Flashc
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { NotFound } from "../NotFound/NotFound";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { tokens } from "../../styles/tokens";
 import {
@@ -26,7 +27,7 @@ import {
 export function StudyMode() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading } = useFlashcards();
+  const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading, error } = useFlashcards();
 
   const categoria = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
@@ -94,6 +95,10 @@ export function StudyMode() {
         <p>Carregando cards...</p>
       </Wrapper>
     );
+  }
+
+  if (!categoria && !error) {
+    return <NotFound />;
   }
 
   if (categoryCards.length === 0) {

@@ -6,6 +6,7 @@ import { FlashcardInterativo } from "../../components/FlashcardInterativo/Flashc
 import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
 import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { NotFound } from "../NotFound/NotFound";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
@@ -27,7 +28,7 @@ const FILTROS_STATUS = [
 export function AllCards() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  const { categories, getCardsByCategory, getCategoryStats, isLoading } = useFlashcards();
+  const { categories, getCardsByCategory, getCategoryStats, isLoading, error } = useFlashcards();
 
   const [busca, setBusca] = useState("");
   const [statusFiltro, setStatusFiltro] = useState("todos");
@@ -50,6 +51,10 @@ export function AllCards() {
         <p>Carregando cards...</p>
       </Wrapper>
     );
+  }
+
+  if (!categoria && !error) {
+    return <NotFound />;
   }
 
   if (categoryCards.length === 0) {
