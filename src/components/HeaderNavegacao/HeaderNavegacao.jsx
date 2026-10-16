@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, matchPath } from "react-router-dom";
 import { FaLayerGroup } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from "./HeaderNavegacao.styles";
@@ -6,7 +6,10 @@ import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from 
 export function HeaderNavegacao() {
   const location = useLocation();
   const { categories } = useFlashcards();
-  const firstCategoryId = categories[0]?.id;
+  const categoriaDaRota =
+    matchPath("/study/:categoryId", location.pathname)?.params.categoryId ??
+    matchPath("/cards/:categoryId", location.pathname)?.params.categoryId;
+  const destinoId = categories.some((c) => c.id === categoriaDaRota) ? categoriaDaRota : categories[0]?.id;
 
   const isHomeActive = location.pathname === "/";
   const isStudyActive = location.pathname.startsWith("/study");
@@ -25,16 +28,16 @@ export function HeaderNavegacao() {
           Início
         </NavLinkStyled>
         <NavLinkStyled
-          to={firstCategoryId ? `/study/${firstCategoryId}` : "#"}
+          to={destinoId ? `/study/${destinoId}` : "#"}
           $active={isStudyActive}
-          $disabled={!firstCategoryId}
+          $disabled={!destinoId}
         >
           Estudar
         </NavLinkStyled>
         <NavLinkStyled
-          to={firstCategoryId ? `/cards/${firstCategoryId}` : "#"}
+          to={destinoId ? `/cards/${destinoId}` : "#"}
           $active={isAllCardsActive}
-          $disabled={!firstCategoryId}
+          $disabled={!destinoId}
         >
           Todos os Cards
         </NavLinkStyled>
