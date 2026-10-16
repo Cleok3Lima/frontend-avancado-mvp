@@ -26,10 +26,11 @@ import {
 export function StudyMode() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
-  const { categories, getCardsByCategory, markCorrect, markWrong, isLoading } = useFlashcards();
+  const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading } = useFlashcards();
 
   const categoria = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
+  const categoryStats = getCategoryStats(categoryId);
 
   const [fila, setFila] = useState([]);
   const [inicializada, setInicializada] = useState(false);
@@ -49,7 +50,6 @@ export function StudyMode() {
   }, [isLoading, inicializada, categoryCards]);
 
   const cartaAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
-  const posicaoAtual = categoryCards.length - fila.length + 1;
 
   function handleAcertar(cardId) {
     markCorrect(cardId);
@@ -145,7 +145,7 @@ export function StudyMode() {
             <FlashcardInterativo
               card={cartaAtual}
               corCategoria={categoria?.color}
-              progresso={`${posicaoAtual}/${categoryCards.length}`}
+              progresso={`${categoryStats.mastered}/${categoryStats.total} dominados`}
               onAcertar={handleAcertar}
               onErrar={handleErrar}
             />
