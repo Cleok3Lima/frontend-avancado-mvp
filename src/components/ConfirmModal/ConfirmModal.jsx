@@ -1,5 +1,5 @@
 import { FaExclamationTriangle } from "react-icons/fa";
-import { BotaoAcao } from "../BotaoAcao/BotaoAcao";
+import { ActionButton } from "../ActionButton/ActionButton";
 import { Overlay, ModalBox, IconWrapper, Titulo, Mensagem, Acoes } from "./ConfirmModal.styles";
 
 export function ConfirmModal({ aberto, titulo, mensagem, onConfirmar, onCancelar }) {
@@ -14,12 +14,12 @@ export function ConfirmModal({ aberto, titulo, mensagem, onConfirmar, onCancelar
         <Titulo>{titulo}</Titulo>
         <Mensagem>{mensagem}</Mensagem>
         <Acoes>
-          <BotaoAcao variante="secondary" onClick={onCancelar}>
+          <ActionButton variante="secondary" onClick={onCancelar}>
             Cancelar
-          </BotaoAcao>
-          <BotaoAcao variante="danger" onClick={onConfirmar}>
+          </ActionButton>
+          <ActionButton variante="danger" onClick={onConfirmar}>
             Confirmar
-          </BotaoAcao>
+          </ActionButton>
         </Acoes>
       </ModalBox>
     </Overlay>

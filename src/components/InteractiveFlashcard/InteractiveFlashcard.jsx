@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaCheck, FaTimes, FaSyncAlt, FaStar } from "react-icons/fa";
-import { BotaoAcao } from "../BotaoAcao/BotaoAcao";
+import { ActionButton } from "../ActionButton/ActionButton";
 import {
   CardWrapper,
   SparkleSuperior,
@@ -11,7 +11,7 @@ import {
   Dica,
   Progresso,
   Acoes,
-} from "./FlashcardInterativo.styles";
+} from "./InteractiveFlashcard.styles";
 
 const STATUS_LABEL = {
   new: "Novo",
@@ -19,7 +19,7 @@ const STATUS_LABEL = {
   mastered: "Dominado",
 };
 
-export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura = false, onAcertar, onErrar }) {
+export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitura = false, onAcertar, onErrar }) {
   const [virado, setVirado] = useState(false);
   const [comemorando, setComemorando] = useState(false);
 
@@ -81,15 +81,15 @@ export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura
 
       {!modoLeitura && (
         <Acoes>
-          <BotaoAcao variante="secondary" icone={FaSyncAlt} onClick={handleVirar}>
+          <ActionButton variante="secondary" icone={FaSyncAlt} onClick={handleVirar}>
             Virar
-          </BotaoAcao>
-          <BotaoAcao variante="primary" icone={FaCheck} onClick={handleAcertarClick}>
+          </ActionButton>
+          <ActionButton variante="primary" icone={FaCheck} onClick={handleAcertarClick}>
             Acertei
-          </BotaoAcao>
-          <BotaoAcao variante="danger" icone={FaTimes} onClick={() => onErrar(card.id)}>
+          </ActionButton>
+          <ActionButton variante="danger" icone={FaTimes} onClick={() => onErrar(card.id)}>
             Errei
-          </BotaoAcao>
+          </ActionButton>
         </Acoes>
       )}
     </div>

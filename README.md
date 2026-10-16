@@ -61,14 +61,14 @@ Os dados seguem um caminho único: o hook `useFlashcardsData` carrega o JSON e j
 
 ### Componentes reutilizáveis
 
-- `BotaoAcao`: botão padronizado com variantes de estilo (primário, secundário, perigo e discreto) e ícone opcional, usado em todas as páginas.
-- `CardEstatistica`: bloco de estatística com título, valor, cor, ícone e dica configuráveis via props.
+- `ActionButton`: botão padronizado com variantes de estilo (primário, secundário, perigo e discreto) e ícone opcional, usado em todas as páginas.
+- `StatCard`: bloco de estatística com título, valor, cor, ícone e dica configuráveis via props.
 - `CategoryCard`: card de categoria com ícone, progresso e atalhos para estudar ou ver os cards.
 - `ConfirmModal`: modal de confirmação para ações que não podem ser desfeitas.
 - `EmptyState`: mensagem para listas vazias ou buscas sem resultado.
 - `ErrorState`: mensagem de erro de carregamento com o botão "Tentar novamente", usada nas três páginas que dependem dos dados.
-- `FlashcardInterativo`: card de pergunta e resposta que vira ao clicar; reutilizado em modo interativo (Study Mode) e em modo somente leitura (All Cards).
-- `HeaderNavegacao`: cabeçalho com logo e navegação, com o link ativo destacado via `useLocation`.
+- `InteractiveFlashcard`: card de pergunta e resposta que vira ao clicar; reutilizado em modo interativo (Study Mode) e em modo somente leitura (All Cards).
+- `NavigationHeader`: cabeçalho com logo e navegação, com o link ativo destacado via `useLocation`.
 - `Tooltip`: dica exibida ao passar o mouse ou focar o elemento pelo teclado.
 
 ## Protótipo

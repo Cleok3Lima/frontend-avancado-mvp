@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { FaListUl, FaCheckCircle, FaClock, FaRedo } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
+import { StatCard } from "../../components/StatCard/StatCard";
 import { CategoryCard } from "../../components/CategoryCard/CategoryCard";
-import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
+import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { ErrorState } from "../../components/ErrorState/ErrorState";
@@ -55,15 +55,15 @@ export function Home() {
       <Titulo>Bem-vindo ao CardMaster</Titulo>
 
       <StatsRow>
-        <CardEstatistica titulo="Total de cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
-        <CardEstatistica
+        <StatCard titulo="Total de cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
+        <StatCard
           titulo="Dominados"
           valor={stats.mastered}
           cor={tokens.colors.mint}
           icone={FaCheckCircle}
           dica="Cards que você já dominou"
         />
-        <CardEstatistica
+        <StatCard
           titulo="Em progresso"
           valor={stats.inProgress}
           cor={tokens.colors.sunshine}
@@ -74,9 +74,9 @@ export function Home() {
 
       <ResetRow>
         <Tooltip texto="Apaga todo o progresso salvo e começa do zero">
-          <BotaoAcao variante="danger" icone={FaRedo} onClick={() => setModalAberto(true)}>
+          <ActionButton variante="danger" icone={FaRedo} onClick={() => setModalAberto(true)}>
             Reiniciar progresso
-          </BotaoAcao>
+          </ActionButton>
         </Tooltip>
         {mensagemSucesso && <SuccessMessage>{mensagemSucesso}</SuccessMessage>}
       </ResetRow>

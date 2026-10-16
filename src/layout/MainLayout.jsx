@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { HeaderNavegacao } from "../components/HeaderNavegacao/HeaderNavegacao";
+import { NavigationHeader } from "../components/NavigationHeader/NavigationHeader";
 
 export function MainLayout() {
   return (
     <div>
-      <HeaderNavegacao />
+      <NavigationHeader />
       <main>
         <Outlet />
       </main>

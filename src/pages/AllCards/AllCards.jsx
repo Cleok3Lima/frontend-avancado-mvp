@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaSearch, FaListUl, FaCheckCircle } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { FlashcardInterativo } from "../../components/FlashcardInterativo/FlashcardInterativo";
-import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
-import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
+import { InteractiveFlashcard } from "../../components/InteractiveFlashcard/InteractiveFlashcard";
+import { StatCard } from "../../components/StatCard/StatCard";
+import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
 import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { NotFound } from "../NotFound/NotFound";
@@ -71,9 +71,9 @@ export function AllCards() {
       <Wrapper>
         <Titulo>{categoria?.name || "Categoria"}</Titulo>
         <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
-        <BotaoAcao variante="primary" onClick={() => navigate("/")}>
+        <ActionButton variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
-        </BotaoAcao>
+        </ActionButton>
       </Wrapper>
     );
   }
@@ -83,8 +83,8 @@ export function AllCards() {
       <Titulo>{categoria?.name || "Categoria"}</Titulo>
 
       <StatsRow>
-        <CardEstatistica titulo="Total" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
-        <CardEstatistica titulo="Dominados" valor={stats.mastered} cor={tokens.colors.mint} icone={FaCheckCircle} />
+        <StatCard titulo="Total" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
+        <StatCard titulo="Dominados" valor={stats.mastered} cor={tokens.colors.mint} icone={FaCheckCircle} />
       </StatsRow>
 
       <Filtros>
@@ -99,13 +99,13 @@ export function AllCards() {
         </CampoBusca>
         <FiltroStatusRow>
           {FILTROS_STATUS.map((filtro) => (
-            <BotaoAcao
+            <ActionButton
               key={filtro.id}
               variante={statusFiltro === filtro.id ? "primary" : "secondary"}
               onClick={() => setStatusFiltro(filtro.id)}
             >
               {filtro.label}
-            </BotaoAcao>
+            </ActionButton>
           ))}
         </FiltroStatusRow>
       </Filtros>
@@ -115,14 +115,14 @@ export function AllCards() {
       ) : (
         <CardsGrid>
           {cardsFiltrados.map((card) => (
-            <FlashcardInterativo key={card.id} card={card} corCategoria={categoria?.color} modoLeitura />
+            <InteractiveFlashcard key={card.id} card={card} corCategoria={categoria?.color} modoLeitura />
           ))}
         </CardsGrid>
       )}
 
-      <BotaoAcao variante="ghost" onClick={() => navigate(`/study/${categoryId}`)}>
+      <ActionButton variante="ghost" onClick={() => navigate(`/study/${categoryId}`)}>
         Estudar esta categoria
-      </BotaoAcao>
+      </ActionButton>
     </Wrapper>
   );
 }

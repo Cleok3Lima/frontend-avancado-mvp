@@ -1,6 +1,6 @@
-import { Botao } from "./BotaoAcao.styles";
+import { Botao } from "./ActionButton.styles";
 
-export function BotaoAcao({
+export function ActionButton({
   children,
   variante = "primary",
   icone: Icone,

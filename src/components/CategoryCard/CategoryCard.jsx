@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { BotaoAcao } from "../BotaoAcao/BotaoAcao";
+import { ActionButton } from "../ActionButton/ActionButton";
 import { Card, IconWrapper, Nome, Stats, Acoes } from "./CategoryCard.styles";
 
 const ICONES = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
@@ -30,12 +30,12 @@ export function CategoryCard({ categoria }) {
         {stats.mastered}/{stats.total} dominados
       </Stats>
       <Acoes>
-        <BotaoAcao variante="primary" onClick={() => navigate(`/study/${categoria.id}`)}>
+        <ActionButton variante="primary" onClick={() => navigate(`/study/${categoria.id}`)}>
           Estudar
-        </BotaoAcao>
-        <BotaoAcao variante="ghost" onClick={() => navigate(`/cards/${categoria.id}`)}>
+        </ActionButton>
+        <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoria.id}`)}>
           Ver Cards
-        </BotaoAcao>
+        </ActionButton>
       </Acoes>
     </Card>
   );

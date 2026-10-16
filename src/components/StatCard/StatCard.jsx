@@ -1,7 +1,7 @@
-import { Card, IconWrapper, Texts, Valor, Titulo } from "./CardEstatistica.styles";
+import { Card, IconWrapper, Texts, Valor, Titulo } from "./StatCard.styles";
 import { Tooltip } from "../Tooltip/Tooltip";
 
-export function CardEstatistica({ titulo, valor, cor, icone: Icone, dica }) {
+export function StatCard({ titulo, valor, cor, icone: Icone, dica }) {
   return (
     <Card>
       <Texts>

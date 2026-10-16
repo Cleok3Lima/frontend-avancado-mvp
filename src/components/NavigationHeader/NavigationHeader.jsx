@@ -1,9 +1,9 @@
 import { useLocation, matchPath } from "react-router-dom";
 import { FaLayerGroup } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from "./HeaderNavegacao.styles";
+import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from "./NavigationHeader.styles";
 
-export function HeaderNavegacao() {
+export function NavigationHeader() {
   const location = useLocation();
   const { categories } = useFlashcards();
   const categoriaDaRota =

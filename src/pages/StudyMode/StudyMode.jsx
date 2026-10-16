@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaKeyboard, FaClock, FaCheck, FaTimes } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
-import { FlashcardInterativo } from "../../components/FlashcardInterativo/FlashcardInterativo";
-import { CardEstatistica } from "../../components/CardEstatistica/CardEstatistica";
-import { BotaoAcao } from "../../components/BotaoAcao/BotaoAcao";
+import { InteractiveFlashcard } from "../../components/InteractiveFlashcard/InteractiveFlashcard";
+import { StatCard } from "../../components/StatCard/StatCard";
+import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
 import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { NotFound } from "../NotFound/NotFound";
@@ -115,9 +115,9 @@ export function StudyMode() {
       <Wrapper>
         <Titulo>{categoria?.name || "Categoria"}</Titulo>
         <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
-        <BotaoAcao variante="primary" onClick={() => navigate("/")}>
+        <ActionButton variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
-        </BotaoAcao>
+        </ActionButton>
       </Wrapper>
     );
   }
@@ -138,16 +138,16 @@ export function StudyMode() {
           <h2>Sessão concluída!</h2>
           <p>Você revisou todos os cards desta categoria.</p>
           <ConclusaoStats>
-            <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
-            <CardEstatistica titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+            <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
+            <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
           </ConclusaoStats>
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
-            <BotaoAcao variante="secondary" onClick={handleEstudarNovamente}>
+            <ActionButton variante="secondary" onClick={handleEstudarNovamente}>
               Estudar novamente
-            </BotaoAcao>
-            <BotaoAcao variante="primary" onClick={() => navigate("/")}>
+            </ActionButton>
+            <ActionButton variante="primary" onClick={() => navigate("/")}>
               Voltar para Início
-            </BotaoAcao>
+            </ActionButton>
           </div>
         </ConclusaoBox>
       </Wrapper>
@@ -162,7 +162,7 @@ export function StudyMode() {
         <Painel>
           <CategoriaBadge>{categoria?.name}</CategoriaBadge>
           <CardArea>
-            <FlashcardInterativo
+            <InteractiveFlashcard
               card={cardAtual}
               corCategoria={categoria?.color}
               progresso={`${categoryStats.mastered}/${categoryStats.total} dominados`}
@@ -181,17 +181,17 @@ export function StudyMode() {
             </Tooltip>
           </AtalhosLegenda>
 
-          <BotaoAcao variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
+          <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
             Ver todos os cards desta categoria
-          </BotaoAcao>
+          </ActionButton>
         </Painel>
 
         <Painel style={{ textAlign: "left" }}>
           <StatsHeading>Estatísticas</StatsHeading>
           <StatsRow>
-            <CardEstatistica titulo="Restantes" valor={fila.length} cor={tokens.colors.periwinkle} icone={FaClock} />
-            <CardEstatistica titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
-            <CardEstatistica titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+            <StatCard titulo="Restantes" valor={fila.length} cor={tokens.colors.periwinkle} icone={FaClock} />
+            <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
+            <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
           </StatsRow>
         </Painel>
       </Layout>
