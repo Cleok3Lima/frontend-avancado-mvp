@@ -31,19 +31,19 @@ export const IconWrapper = styled.div`
   color: ${tokens.colors.coral};
 `;
 
-export const Titulo = styled.h2`
+export const Title = styled.h2`
   font-size: 1.1rem;
   color: ${tokens.colors.ink};
 `;
 
-export const Mensagem = styled.p`
+export const Message = styled.p`
   margin: 0;
   color: ${tokens.colors.ink};
   opacity: 0.75;
   font-size: 0.9rem;
 `;
 
-export const Acoes = styled.div`
+export const Actions = styled.div`
   display: flex;
   gap: 0.75rem;
   margin-top: 0.75rem;

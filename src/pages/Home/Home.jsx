@@ -10,7 +10,7 @@ import { ErrorState } from "../../components/ErrorState/ErrorState";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
-  Titulo,
+  Title,
   StatsRow,
   ResetRow,
   SuccessMessage,
@@ -52,7 +52,7 @@ export function Home() {
 
   return (
     <Wrapper>
-      <Titulo>Bem-vindo ao CardMaster</Titulo>
+      <Title>Bem-vindo ao CardMaster</Title>
 
       <StatsRow>
         <StatCard titulo="Total de cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />

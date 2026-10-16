@@ -1,4 +1,4 @@
-import { Botao } from "./ActionButton.styles";
+import { Button } from "./ActionButton.styles";
 
 export function ActionButton({
   children,
@@ -10,9 +10,9 @@ export function ActionButton({
   ...rest
 }) {
   return (
-    <Botao type={type} $variante={variante} onClick={onClick} disabled={disabled} {...rest}>
+    <Button type={type} $variante={variante} onClick={onClick} disabled={disabled} {...rest}>
       {Icone && <Icone aria-hidden="true" />}
       {children}
-    </Botao>
+    </Button>
   );
 }

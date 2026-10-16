@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
   color: ${tokens.colors.ink};
   margin-bottom: 1.5rem;
 `;

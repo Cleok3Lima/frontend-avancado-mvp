@@ -16,12 +16,12 @@ export const IconWrapper = styled.div`
   color: ${tokens.colors.sunshine};
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
   margin: 0;
   color: ${tokens.colors.ink};
 `;
 
-export const Mensagem = styled.p`
+export const Message = styled.p`
   margin: 0;
   color: ${tokens.colors.ink};
   opacity: 0.7;

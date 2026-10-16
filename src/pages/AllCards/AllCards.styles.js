@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
   color: ${tokens.colors.ink};
   margin-bottom: 1rem;
   text-align: center;
@@ -25,7 +25,7 @@ export const StatsRow = styled.div`
   margin-bottom: 1.5rem;
 `;
 
-export const Filtros = styled.div`
+export const Filters = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -33,7 +33,7 @@ export const Filtros = styled.div`
   align-items: center;
 `;
 
-export const CampoBusca = styled.div`
+export const SearchField = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -55,7 +55,7 @@ export const CampoBusca = styled.div`
   }
 `;
 
-export const FiltroStatusRow = styled.div`
+export const StatusFilterRow = styled.div`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;

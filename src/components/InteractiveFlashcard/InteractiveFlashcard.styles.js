@@ -31,7 +31,7 @@ export const CardWrapper = styled.div`
   }
 `;
 
-export const SparkleSuperior = styled(FaStar)`
+export const TopSparkle = styled(FaStar)`
   position: absolute;
   top: 0.85rem;
   right: 1rem;
@@ -40,7 +40,7 @@ export const SparkleSuperior = styled(FaStar)`
   opacity: 0.85;
 `;
 
-export const SparkleInferior = styled(FaStar)`
+export const BottomSparkle = styled(FaStar)`
   position: absolute;
   bottom: 0.85rem;
   left: 1rem;
@@ -49,7 +49,7 @@ export const SparkleInferior = styled(FaStar)`
   opacity: 0.85;
 `;
 
-export const SparkleComemoracao = styled(FaStar)`
+export const CelebrationSparkle = styled(FaStar)`
   position: absolute;
   top: 0.85rem;
   left: 1rem;
@@ -99,13 +99,13 @@ export const Face = styled.p`
   margin: 0;
 `;
 
-export const Dica = styled.span`
+export const FlipHint = styled.span`
   font-size: 0.85rem;
   color: ${tokens.colors.ink};
   opacity: 0.7;
 `;
 
-export const Progresso = styled.span`
+export const Progress = styled.span`
   position: absolute;
   bottom: 0.85rem;
   right: 1rem;
@@ -118,7 +118,7 @@ export const Progresso = styled.span`
   padding: 0.15rem 0.6rem;
 `;
 
-export const Acoes = styled.div`
+export const Actions = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.75rem;

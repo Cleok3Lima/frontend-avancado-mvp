@@ -1,6 +1,6 @@
 import { FaExclamationTriangle } from "react-icons/fa";
 import { ActionButton } from "../ActionButton/ActionButton";
-import { Overlay, ModalBox, IconWrapper, Titulo, Mensagem, Acoes } from "./ConfirmModal.styles";
+import { Overlay, ModalBox, IconWrapper, Title, Message, Actions } from "./ConfirmModal.styles";
 
 export function ConfirmModal({ aberto, titulo, mensagem, onConfirmar, onCancelar }) {
   if (!aberto) return null;
@@ -11,16 +11,16 @@ export function ConfirmModal({ aberto, titulo, mensagem, onConfirmar, onCancelar
         <IconWrapper>
           <FaExclamationTriangle aria-hidden="true" />
         </IconWrapper>
-        <Titulo>{titulo}</Titulo>
-        <Mensagem>{mensagem}</Mensagem>
-        <Acoes>
+        <Title>{titulo}</Title>
+        <Message>{mensagem}</Message>
+        <Actions>
           <ActionButton variante="secondary" onClick={onCancelar}>
             Cancelar
           </ActionButton>
           <ActionButton variante="danger" onClick={onConfirmar}>
             Confirmar
           </ActionButton>
-        </Acoes>
+        </Actions>
       </ModalBox>
     </Overlay>
   );

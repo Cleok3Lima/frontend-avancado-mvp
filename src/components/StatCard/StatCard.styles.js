@@ -21,14 +21,14 @@ export const Texts = styled.div`
   flex: 1;
 `;
 
-export const Valor = styled.span`
+export const Value = styled.span`
   font-family: ${tokens.fonts.display};
   font-size: 1.6rem;
   font-weight: 700;
   color: ${tokens.colors.ink};
 `;
 
-export const Titulo = styled.span`
+export const Title = styled.span`
   font-size: 0.8rem;
   color: ${tokens.colors.ink};
   opacity: 0.7;

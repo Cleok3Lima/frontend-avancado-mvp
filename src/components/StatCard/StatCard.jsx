@@ -1,12 +1,12 @@
-import { Card, IconWrapper, Texts, Valor, Titulo } from "./StatCard.styles";
+import { Card, IconWrapper, Texts, Value, Title } from "./StatCard.styles";
 import { Tooltip } from "../Tooltip/Tooltip";
 
 export function StatCard({ titulo, valor, cor, icone: Icone, dica }) {
   return (
     <Card>
       <Texts>
-        <Valor>{valor}</Valor>
-        <Titulo>{titulo}</Titulo>
+        <Value>{valor}</Value>
+        <Title>{titulo}</Title>
       </Texts>
       {Icone && (
         <IconWrapper $cor={cor}>

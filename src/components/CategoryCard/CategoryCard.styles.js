@@ -27,7 +27,7 @@ export const IconWrapper = styled.div`
   border: 2px solid ${tokens.colors.ink};
 `;
 
-export const Nome = styled.h3`
+export const Name = styled.h3`
   font-size: 1.05rem;
   color: ${tokens.colors.ink};
 `;
@@ -38,7 +38,7 @@ export const Stats = styled.span`
   opacity: 0.7;
 `;
 
-export const Acoes = styled.div`
+export const Actions = styled.div`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;

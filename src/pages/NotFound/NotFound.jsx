@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { ActionButton } from "../../components/ActionButton/ActionButton";
-import { Wrapper, IconWrapper, Titulo, Mensagem } from "./NotFound.styles";
+import { Wrapper, IconWrapper, Title, Message } from "./NotFound.styles";
 
 export function NotFound() {
   const navigate = useNavigate();
@@ -11,8 +11,8 @@ export function NotFound() {
       <IconWrapper>
         <FaExclamationTriangle aria-hidden="true" />
       </IconWrapper>
-      <Titulo>404 - Página não encontrada</Titulo>
-      <Mensagem>A página que você procura não existe ou foi movida.</Mensagem>
+      <Title>404 - Página não encontrada</Title>
+      <Message>A página que você procura não existe ou foi movida.</Message>
       <ActionButton variante="primary" onClick={() => navigate("/")}>
         Voltar para Início
       </ActionButton>

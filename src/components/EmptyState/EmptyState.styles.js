@@ -17,7 +17,7 @@ export const IconWrapper = styled.div`
   font-size: 2.5rem;
 `;
 
-export const Mensagem = styled.p`
+export const Message = styled.p`
   font-size: 1rem;
   margin: 0;
 `;

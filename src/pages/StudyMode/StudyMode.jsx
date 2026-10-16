@@ -12,17 +12,17 @@ import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
-  Titulo,
+  Title,
   Layout,
-  Painel,
-  Divisor,
-  CategoriaBadge,
+  Panel,
+  Divider,
+  CategoryBadge,
   CardArea,
   StatsHeading,
   StatsRow,
-  ConclusaoStats,
-  AtalhosLegenda,
-  ConclusaoBox,
+  CompletionStats,
+  ShortcutsHint,
+  CompletionBox,
 } from "./StudyMode.styles";
 
 export function StudyMode() {
@@ -113,7 +113,7 @@ export function StudyMode() {
   if (categoryCards.length === 0) {
     return (
       <Wrapper>
-        <Titulo>{categoria?.name || "Categoria"}</Titulo>
+        <Title>{categoria?.name || "Categoria"}</Title>
         <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
         <ActionButton variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
@@ -133,14 +133,14 @@ export function StudyMode() {
   if (fila.length === 0) {
     return (
       <Wrapper>
-        <Titulo>{categoria?.name || "Categoria"}</Titulo>
-        <ConclusaoBox>
+        <Title>{categoria?.name || "Categoria"}</Title>
+        <CompletionBox>
           <h2>Sessão concluída!</h2>
           <p>Você revisou todos os cards desta categoria.</p>
-          <ConclusaoStats>
+          <CompletionStats>
             <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
             <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
-          </ConclusaoStats>
+          </CompletionStats>
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
             <ActionButton variante="secondary" onClick={handleEstudarNovamente}>
               Estudar novamente
@@ -149,18 +149,18 @@ export function StudyMode() {
               Voltar para Início
             </ActionButton>
           </div>
-        </ConclusaoBox>
+        </CompletionBox>
       </Wrapper>
     );
   }
 
   return (
     <Wrapper>
-      <Titulo>{categoria?.name || "Categoria"}</Titulo>
+      <Title>{categoria?.name || "Categoria"}</Title>
 
       <Layout>
-        <Painel>
-          <CategoriaBadge>{categoria?.name}</CategoriaBadge>
+        <Panel>
+          <CategoryBadge>{categoria?.name}</CategoryBadge>
           <CardArea>
             <InteractiveFlashcard
               card={cardAtual}
@@ -171,29 +171,29 @@ export function StudyMode() {
             />
           </CardArea>
 
-          <Divisor />
+          <Divider />
 
-          <AtalhosLegenda>
+          <ShortcutsHint>
             <Tooltip texto="Espaço ou Enter vira o card; seta direita ou 1 marca acerto; seta esquerda ou 2 marca erro">
               <span>
                 <FaKeyboard aria-hidden="true" /> Atalhos de teclado disponíveis
               </span>
             </Tooltip>
-          </AtalhosLegenda>
+          </ShortcutsHint>
 
           <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
             Ver todos os cards desta categoria
           </ActionButton>
-        </Painel>
+        </Panel>
 
-        <Painel style={{ textAlign: "left" }}>
+        <Panel style={{ textAlign: "left" }}>
           <StatsHeading>Estatísticas</StatsHeading>
           <StatsRow>
             <StatCard titulo="Restantes" valor={fila.length} cor={tokens.colors.periwinkle} icone={FaClock} />
             <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
             <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
           </StatsRow>
-        </Painel>
+        </Panel>
       </Layout>
     </Wrapper>
   );

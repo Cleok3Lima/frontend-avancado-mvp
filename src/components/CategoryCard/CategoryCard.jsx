@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { ActionButton } from "../ActionButton/ActionButton";
-import { Card, IconWrapper, Nome, Stats, Acoes } from "./CategoryCard.styles";
+import { Card, IconWrapper, Name, Stats, Actions } from "./CategoryCard.styles";
 
 const ICONES = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
 
@@ -25,18 +25,18 @@ export function CategoryCard({ categoria }) {
       <IconWrapper $cor={categoria.color}>
         <Icone aria-hidden="true" />
       </IconWrapper>
-      <Nome>{categoria.name}</Nome>
+      <Name>{categoria.name}</Name>
       <Stats>
         {stats.mastered}/{stats.total} dominados
       </Stats>
-      <Acoes>
+      <Actions>
         <ActionButton variante="primary" onClick={() => navigate(`/study/${categoria.id}`)}>
           Estudar
         </ActionButton>
         <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoria.id}`)}>
           Ver Cards
         </ActionButton>
-      </Acoes>
+      </Actions>
     </Card>
   );
 }

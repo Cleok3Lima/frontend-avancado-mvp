@@ -3,14 +3,14 @@ import { FaCheck, FaTimes, FaSyncAlt, FaStar } from "react-icons/fa";
 import { ActionButton } from "../ActionButton/ActionButton";
 import {
   CardWrapper,
-  SparkleSuperior,
-  SparkleInferior,
-  SparkleComemoracao,
+  TopSparkle,
+  BottomSparkle,
+  CelebrationSparkle,
   StatusBadge,
   Face,
-  Dica,
-  Progresso,
-  Acoes,
+  FlipHint,
+  Progress,
+  Actions,
 } from "./InteractiveFlashcard.styles";
 
 const STATUS_LABEL = {
@@ -67,20 +67,20 @@ export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitur
   return (
     <div>
       <CardWrapper onClick={handleVirar} onKeyDown={handleKeyDownCard} role="button" tabIndex={0} $cor={corCategoria}>
-        <SparkleSuperior aria-hidden="true" />
-        <SparkleInferior aria-hidden="true" />
-        {comemorando && <SparkleComemoracao aria-hidden="true" />}
+        <TopSparkle aria-hidden="true" />
+        <BottomSparkle aria-hidden="true" />
+        {comemorando && <CelebrationSparkle aria-hidden="true" />}
         <StatusBadge $status={card.status}>
           {card.status === "mastered" && <FaStar aria-hidden="true" />}
           {STATUS_LABEL[card.status]}
         </StatusBadge>
         <Face>{virado ? card.answer : card.question}</Face>
-        {!virado && <Dica>Clique para virar</Dica>}
-        {progresso && <Progresso>{progresso}</Progresso>}
+        {!virado && <FlipHint>Clique para virar</FlipHint>}
+        {progresso && <Progress>{progresso}</Progress>}
       </CardWrapper>
 
       {!modoLeitura && (
-        <Acoes>
+        <Actions>
           <ActionButton variante="secondary" icone={FaSyncAlt} onClick={handleVirar}>
             Virar
           </ActionButton>
@@ -90,7 +90,7 @@ export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitur
           <ActionButton variante="danger" icone={FaTimes} onClick={() => onErrar(card.id)}>
             Errei
           </ActionButton>
-        </Acoes>
+        </Actions>
       )}
     </div>
   );

@@ -11,11 +11,11 @@ import { NotFound } from "../NotFound/NotFound";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
-  Titulo,
+  Title,
   StatsRow,
-  Filtros,
-  CampoBusca,
-  FiltroStatusRow,
+  Filters,
+  SearchField,
+  StatusFilterRow,
   CardsGrid,
 } from "./AllCards.styles";
 
@@ -69,7 +69,7 @@ export function AllCards() {
   if (categoryCards.length === 0) {
     return (
       <Wrapper>
-        <Titulo>{categoria?.name || "Categoria"}</Titulo>
+        <Title>{categoria?.name || "Categoria"}</Title>
         <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
         <ActionButton variante="primary" onClick={() => navigate("/")}>
           Voltar para Início
@@ -80,15 +80,15 @@ export function AllCards() {
 
   return (
     <Wrapper>
-      <Titulo>{categoria?.name || "Categoria"}</Titulo>
+      <Title>{categoria?.name || "Categoria"}</Title>
 
       <StatsRow>
         <StatCard titulo="Total" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
         <StatCard titulo="Dominados" valor={stats.mastered} cor={tokens.colors.mint} icone={FaCheckCircle} />
       </StatsRow>
 
-      <Filtros>
-        <CampoBusca>
+      <Filters>
+        <SearchField>
           <FaSearch aria-hidden="true" />
           <input
             type="text"
@@ -96,8 +96,8 @@ export function AllCards() {
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
           />
-        </CampoBusca>
-        <FiltroStatusRow>
+        </SearchField>
+        <StatusFilterRow>
           {FILTROS_STATUS.map((filtro) => (
             <ActionButton
               key={filtro.id}
@@ -107,8 +107,8 @@ export function AllCards() {
               {filtro.label}
             </ActionButton>
           ))}
-        </FiltroStatusRow>
-      </Filtros>
+        </StatusFilterRow>
+      </Filters>
 
       {cardsFiltrados.length === 0 ? (
         <EmptyState mensagem="Nenhum card encontrado com esses filtros" />

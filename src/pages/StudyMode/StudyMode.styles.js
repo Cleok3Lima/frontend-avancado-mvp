@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
   font-size: 1.6rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -28,7 +28,7 @@ export const Layout = styled.div`
   }
 `;
 
-export const Painel = styled.div`
+export const Panel = styled.div`
   background-color: ${tokens.colors.surface};
   border: 3px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.sm};
@@ -41,14 +41,14 @@ export const Painel = styled.div`
   }
 `;
 
-export const Divisor = styled.hr`
+export const Divider = styled.hr`
   border: none;
   border-top: 2px solid ${tokens.colors.ink};
   opacity: 0.15;
   margin: 1.25rem 0;
 `;
 
-export const CategoriaBadge = styled.span`
+export const CategoryBadge = styled.span`
   display: inline-flex;
   font-weight: 600;
   font-size: 0.85rem;
@@ -80,14 +80,14 @@ export const StatsRow = styled.div`
   }
 `;
 
-export const ConclusaoStats = styled.div`
+export const CompletionStats = styled.div`
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
-export const AtalhosLegenda = styled.div`
+export const ShortcutsHint = styled.div`
   color: ${tokens.colors.ink};
   opacity: 0.7;
   font-size: 0.85rem;
@@ -96,7 +96,7 @@ export const AtalhosLegenda = styled.div`
   justify-content: center;
 `;
 
-export const ConclusaoBox = styled.div`
+export const CompletionBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
