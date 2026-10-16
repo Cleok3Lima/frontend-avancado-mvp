@@ -37,6 +37,13 @@ export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura
     setVirado((atual) => !atual);
   }
 
+  function handleKeyDownCard(e) {
+    if (e.code === "Space" || e.code === "Enter") {
+      e.preventDefault();
+      handleVirar();
+    }
+  }
+
   function handleAcertarClick() {
     setComemorando(true);
     onAcertar(card.id);
@@ -46,6 +53,7 @@ export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura
     if (modoLeitura) return;
 
     function handleKeyDown(e) {
+      if (e.target.closest?.("button, a, input, textarea, select, [role=button]")) return;
       if (e.code === "Space" || e.code === "Enter") {
         e.preventDefault();
         handleVirar();
@@ -58,7 +66,7 @@ export function FlashcardInterativo({ card, corCategoria, progresso, modoLeitura
 
   return (
     <div>
-      <CardWrapper onClick={handleVirar} role="button" tabIndex={0} $cor={corCategoria}>
+      <CardWrapper onClick={handleVirar} onKeyDown={handleKeyDownCard} role="button" tabIndex={0} $cor={corCategoria}>
         <SparkleSuperior aria-hidden="true" />
         <SparkleInferior aria-hidden="true" />
         {comemorando && <SparkleComemoracao aria-hidden="true" />}
