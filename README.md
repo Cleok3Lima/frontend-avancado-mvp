@@ -22,7 +22,7 @@ O flashcard obriga a pessoa a tentar lembrar a resposta antes de vê-la (recuper
 
 Funcionalidades complementares:
 
-- **Home (Dashboard):** categorias de estudo disponíveis, com o progresso de cada uma ("3/10 dominados"), e estatísticas gerais (Total Cards, Mastered, In Progress).
+- **Home (Dashboard):** categorias de estudo disponíveis, com o progresso de cada uma ("3/10 dominados"), e estatísticas gerais (total de cards, dominados e em progresso).
 - **Study Mode:** a sessão de estudo, com placar de acertos, erros e cartões restantes, e uma tela de conclusão ao final.
 - **All Cards:** todos os cartões de uma categoria, com busca por texto (pergunta ou resposta) combinada com filtro por status (Novo, Em progresso, Dominado).
 - **Atalhos de teclado no Study Mode:** Espaço ou Enter vira o card, seta direita (ou `1`) marca acerto, seta esquerda (ou `2`) marca erro.

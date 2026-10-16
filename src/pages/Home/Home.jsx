@@ -56,16 +56,16 @@ export function Home() {
       <Titulo>Bem-vindo ao CardMaster</Titulo>
 
       <StatsRow>
-        <CardEstatistica titulo="Total Cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
+        <CardEstatistica titulo="Total de cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
         <CardEstatistica
-          titulo="Mastered"
+          titulo="Dominados"
           valor={stats.mastered}
           cor={tokens.colors.mint}
           icone={FaCheckCircle}
           dica="Cards que você já dominou"
         />
         <CardEstatistica
-          titulo="In Progress"
+          titulo="Em progresso"
           valor={stats.inProgress}
           cor={tokens.colors.sunshine}
           icone={FaClock}
