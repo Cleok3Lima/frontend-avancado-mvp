@@ -45,7 +45,7 @@ export function Home() {
   if (error) {
     return (
       <Wrapper>
-        <ErrorState onTentarNovamente={reloadData} />
+        <ErrorState onRetry={reloadData} />
       </Wrapper>
     );
   }
@@ -55,26 +55,26 @@ export function Home() {
       <Title>Bem-vindo ao CardMaster</Title>
 
       <StatsRow>
-        <StatCard titulo="Total de cards" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
+        <StatCard title="Total de cards" value={stats.total} color={tokens.colors.periwinkle} icon={FaListUl} />
         <StatCard
-          titulo="Dominados"
-          valor={stats.mastered}
-          cor={tokens.colors.mint}
-          icone={FaCheckCircle}
-          dica="Cards que você já dominou"
+          title="Dominados"
+          value={stats.mastered}
+          color={tokens.colors.mint}
+          icon={FaCheckCircle}
+          hint="Cards que você já dominou"
         />
         <StatCard
-          titulo="Em progresso"
-          valor={stats.inProgress}
-          cor={tokens.colors.sunshine}
-          icone={FaClock}
-          dica="Cards que você já errou pelo menos uma vez"
+          title="Em progresso"
+          value={stats.inProgress}
+          color={tokens.colors.sunshine}
+          icon={FaClock}
+          hint="Cards que você já errou pelo menos uma vez"
         />
       </StatsRow>
 
       <ResetRow>
-        <Tooltip texto="Apaga todo o progresso salvo e começa do zero">
-          <ActionButton variante="danger" icone={FaRedo} onClick={() => setModalAberto(true)}>
+        <Tooltip text="Apaga todo o progresso salvo e começa do zero">
+          <ActionButton variant="danger" icon={FaRedo} onClick={() => setModalAberto(true)}>
             Reiniciar progresso
           </ActionButton>
         </Tooltip>
@@ -82,17 +82,17 @@ export function Home() {
       </ResetRow>
 
       <CategoriesGrid>
-        {categories.map((categoria) => (
-          <CategoryCard key={categoria.id} categoria={categoria} />
+        {categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
         ))}
       </CategoriesGrid>
 
       <ConfirmModal
-        aberto={modalAberto}
-        titulo="Reiniciar progresso"
-        mensagem="Isso vai apagar todo o seu progresso de estudo salvo. Essa ação não pode ser desfeita."
-        onConfirmar={handleConfirmarReset}
-        onCancelar={() => setModalAberto(false)}
+        isOpen={modalAberto}
+        title="Reiniciar progresso"
+        message="Isso vai apagar todo o seu progresso de estudo salvo. Essa ação não pode ser desfeita."
+        onConfirm={handleConfirmarReset}
+        onCancel={() => setModalAberto(false)}
       />
     </Wrapper>
   );

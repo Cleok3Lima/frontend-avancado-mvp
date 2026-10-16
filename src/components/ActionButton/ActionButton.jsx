@@ -2,16 +2,16 @@ import { Button } from "./ActionButton.styles";
 
 export function ActionButton({
   children,
-  variante = "primary",
-  icone: Icone,
+  variant = "primary",
+  icon: Icon,
   onClick,
   type = "button",
   disabled = false,
   ...rest
 }) {
   return (
-    <Button type={type} $variante={variante} onClick={onClick} disabled={disabled} {...rest}>
-      {Icone && <Icone aria-hidden="true" />}
+    <Button type={type} $variant={variant} onClick={onClick} disabled={disabled} {...rest}>
+      {Icon && <Icon aria-hidden="true" />}
       {children}
     </Button>
   );

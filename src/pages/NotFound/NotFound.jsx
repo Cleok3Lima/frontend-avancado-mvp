@@ -13,7 +13,7 @@ export function NotFound() {
       </IconWrapper>
       <Title>404 - Página não encontrada</Title>
       <Message>A página que você procura não existe ou foi movida.</Message>
-      <ActionButton variante="primary" onClick={() => navigate("/")}>
+      <ActionButton variant="primary" onClick={() => navigate("/")}>
         Voltar para Início
       </ActionButton>
     </Wrapper>

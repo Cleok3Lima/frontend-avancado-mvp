@@ -41,7 +41,7 @@ export const IconWrapper = styled.div`
   width: 64px;
   font-size: 1.5rem;
   color: ${tokens.colors.ink};
-  background-color: ${(props) => props.$cor || tokens.colors.periwinkle};
+  background-color: ${(props) => props.$color || tokens.colors.periwinkle};
   border-left: 2px solid ${tokens.colors.ink};
   border-radius: 0 calc(${tokens.radii.sm} - 2px) calc(${tokens.radii.sm} - 2px) 0;
 `;

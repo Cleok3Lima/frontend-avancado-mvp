@@ -23,7 +23,7 @@ export const IconWrapper = styled.div`
   border-radius: 50%;
   font-size: 1.6rem;
   color: ${tokens.colors.ink};
-  background-color: ${(props) => props.$cor || tokens.colors.periwinkle};
+  background-color: ${(props) => props.$color || tokens.colors.periwinkle};
   border: 2px solid ${tokens.colors.ink};
 `;
 

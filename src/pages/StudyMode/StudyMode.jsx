@@ -30,7 +30,7 @@ export function StudyMode() {
   const navigate = useNavigate();
   const { categories, getCardsByCategory, getCategoryStats, markCorrect, markWrong, isLoading, error, reloadData } = useFlashcards();
 
-  const categoria = categories.find((c) => c.id === categoryId);
+  const category = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
   const categoryStats = getCategoryStats(categoryId);
 
@@ -101,21 +101,21 @@ export function StudyMode() {
   if (error) {
     return (
       <Wrapper>
-        <ErrorState onTentarNovamente={reloadData} />
+        <ErrorState onRetry={reloadData} />
       </Wrapper>
     );
   }
 
-  if (!categoria) {
+  if (!category) {
     return <NotFound />;
   }
 
   if (categoryCards.length === 0) {
     return (
       <Wrapper>
-        <Title>{categoria?.name || "Categoria"}</Title>
-        <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
-        <ActionButton variante="primary" onClick={() => navigate("/")}>
+        <Title>{category?.name || "Categoria"}</Title>
+        <EmptyState message="Nenhum card encontrado nesta categoria" />
+        <ActionButton variant="primary" onClick={() => navigate("/")}>
           Voltar para Início
         </ActionButton>
       </Wrapper>
@@ -133,19 +133,19 @@ export function StudyMode() {
   if (fila.length === 0) {
     return (
       <Wrapper>
-        <Title>{categoria?.name || "Categoria"}</Title>
+        <Title>{category?.name || "Categoria"}</Title>
         <CompletionBox>
           <h2>Sessão concluída!</h2>
           <p>Você revisou todos os cards desta categoria.</p>
           <CompletionStats>
-            <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
-            <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+            <StatCard title="Acertos" value={sessao.acertos} color={tokens.colors.mint} icon={FaCheck} />
+            <StatCard title="Erros" value={sessao.erros} color={tokens.colors.coral} icon={FaTimes} />
           </CompletionStats>
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
-            <ActionButton variante="secondary" onClick={handleEstudarNovamente}>
+            <ActionButton variant="secondary" onClick={handleEstudarNovamente}>
               Estudar novamente
             </ActionButton>
-            <ActionButton variante="primary" onClick={() => navigate("/")}>
+            <ActionButton variant="primary" onClick={() => navigate("/")}>
               Voltar para Início
             </ActionButton>
           </div>
@@ -156,32 +156,32 @@ export function StudyMode() {
 
   return (
     <Wrapper>
-      <Title>{categoria?.name || "Categoria"}</Title>
+      <Title>{category?.name || "Categoria"}</Title>
 
       <Layout>
         <Panel>
-          <CategoryBadge>{categoria?.name}</CategoryBadge>
+          <CategoryBadge>{category?.name}</CategoryBadge>
           <CardArea>
             <InteractiveFlashcard
               card={cardAtual}
-              corCategoria={categoria?.color}
-              progresso={`${categoryStats.mastered}/${categoryStats.total} dominados`}
-              onAcertar={handleAcertar}
-              onErrar={handleErrar}
+              categoryColor={category?.color}
+              progress={`${categoryStats.mastered}/${categoryStats.total} dominados`}
+              onCorrect={handleAcertar}
+              onWrong={handleErrar}
             />
           </CardArea>
 
           <Divider />
 
           <ShortcutsHint>
-            <Tooltip texto="Espaço ou Enter vira o card; seta direita ou 1 marca acerto; seta esquerda ou 2 marca erro">
+            <Tooltip text="Espaço ou Enter vira o card; seta direita ou 1 marca acerto; seta esquerda ou 2 marca erro">
               <span>
                 <FaKeyboard aria-hidden="true" /> Atalhos de teclado disponíveis
               </span>
             </Tooltip>
           </ShortcutsHint>
 
-          <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
+          <ActionButton variant="ghost" onClick={() => navigate(`/cards/${categoryId}`)}>
             Ver todos os cards desta categoria
           </ActionButton>
         </Panel>
@@ -189,9 +189,9 @@ export function StudyMode() {
         <Panel style={{ textAlign: "left" }}>
           <StatsHeading>Estatísticas</StatsHeading>
           <StatsRow>
-            <StatCard titulo="Restantes" valor={fila.length} cor={tokens.colors.periwinkle} icone={FaClock} />
-            <StatCard titulo="Acertos" valor={sessao.acertos} cor={tokens.colors.mint} icone={FaCheck} />
-            <StatCard titulo="Erros" valor={sessao.erros} cor={tokens.colors.coral} icone={FaTimes} />
+            <StatCard title="Restantes" value={fila.length} color={tokens.colors.periwinkle} icon={FaClock} />
+            <StatCard title="Acertos" value={sessao.acertos} color={tokens.colors.mint} icon={FaCheck} />
+            <StatCard title="Erros" value={sessao.erros} color={tokens.colors.coral} icon={FaTimes} />
           </StatsRow>
         </Panel>
       </Layout>

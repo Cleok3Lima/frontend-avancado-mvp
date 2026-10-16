@@ -34,7 +34,7 @@ export function AllCards() {
   const [busca, setBusca] = useState("");
   const [statusFiltro, setStatusFiltro] = useState("todos");
 
-  const categoria = categories.find((c) => c.id === categoryId);
+  const category = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
   const stats = getCategoryStats(categoryId);
 
@@ -57,21 +57,21 @@ export function AllCards() {
   if (error) {
     return (
       <Wrapper>
-        <ErrorState onTentarNovamente={reloadData} />
+        <ErrorState onRetry={reloadData} />
       </Wrapper>
     );
   }
 
-  if (!categoria) {
+  if (!category) {
     return <NotFound />;
   }
 
   if (categoryCards.length === 0) {
     return (
       <Wrapper>
-        <Title>{categoria?.name || "Categoria"}</Title>
-        <EmptyState mensagem="Nenhum card encontrado nesta categoria" />
-        <ActionButton variante="primary" onClick={() => navigate("/")}>
+        <Title>{category?.name || "Categoria"}</Title>
+        <EmptyState message="Nenhum card encontrado nesta categoria" />
+        <ActionButton variant="primary" onClick={() => navigate("/")}>
           Voltar para Início
         </ActionButton>
       </Wrapper>
@@ -80,11 +80,11 @@ export function AllCards() {
 
   return (
     <Wrapper>
-      <Title>{categoria?.name || "Categoria"}</Title>
+      <Title>{category?.name || "Categoria"}</Title>
 
       <StatsRow>
-        <StatCard titulo="Total" valor={stats.total} cor={tokens.colors.periwinkle} icone={FaListUl} />
-        <StatCard titulo="Dominados" valor={stats.mastered} cor={tokens.colors.mint} icone={FaCheckCircle} />
+        <StatCard title="Total" value={stats.total} color={tokens.colors.periwinkle} icon={FaListUl} />
+        <StatCard title="Dominados" value={stats.mastered} color={tokens.colors.mint} icon={FaCheckCircle} />
       </StatsRow>
 
       <Filters>
@@ -101,7 +101,7 @@ export function AllCards() {
           {FILTROS_STATUS.map((filtro) => (
             <ActionButton
               key={filtro.id}
-              variante={statusFiltro === filtro.id ? "primary" : "secondary"}
+              variant={statusFiltro === filtro.id ? "primary" : "secondary"}
               onClick={() => setStatusFiltro(filtro.id)}
             >
               {filtro.label}
@@ -111,16 +111,16 @@ export function AllCards() {
       </Filters>
 
       {cardsFiltrados.length === 0 ? (
-        <EmptyState mensagem="Nenhum card encontrado com esses filtros" />
+        <EmptyState message="Nenhum card encontrado com esses filtros" />
       ) : (
         <CardsGrid>
           {cardsFiltrados.map((card) => (
-            <InteractiveFlashcard key={card.id} card={card} corCategoria={categoria?.color} modoLeitura />
+            <InteractiveFlashcard key={card.id} card={card} categoryColor={category?.color} readOnly />
           ))}
         </CardsGrid>
       )}
 
-      <ActionButton variante="ghost" onClick={() => navigate(`/study/${categoryId}`)}>
+      <ActionButton variant="ghost" onClick={() => navigate(`/study/${categoryId}`)}>
         Estudar esta categoria
       </ActionButton>
     </Wrapper>

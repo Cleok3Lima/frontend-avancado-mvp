@@ -1,13 +1,13 @@
 import { FaInbox } from "react-icons/fa";
 import { Wrapper, IconWrapper, Message } from "./EmptyState.styles";
 
-export function EmptyState({ mensagem = "Nenhum item encontrado", icone: Icone = FaInbox }) {
+export function EmptyState({ message = "Nenhum item encontrado", icon: Icon = FaInbox }) {
   return (
     <Wrapper>
       <IconWrapper>
-        <Icone aria-hidden="true" />
+        <Icon aria-hidden="true" />
       </IconWrapper>
-      <Message>{mensagem}</Message>
+      <Message>{message}</Message>
     </Wrapper>
   );
 }

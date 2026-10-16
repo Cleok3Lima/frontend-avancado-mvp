@@ -19,7 +19,7 @@ const STATUS_LABEL = {
   mastered: "Dominado",
 };
 
-export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitura = false, onAcertar, onErrar }) {
+export function InteractiveFlashcard({ card, categoryColor, progress, readOnly = false, onCorrect, onWrong }) {
   const [virado, setVirado] = useState(false);
   const [comemorando, setComemorando] = useState(false);
 
@@ -46,11 +46,11 @@ export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitur
 
   function handleAcertarClick() {
     setComemorando(true);
-    onAcertar(card.id);
+    onCorrect(card.id);
   }
 
   useEffect(() => {
-    if (modoLeitura) return;
+    if (readOnly) return;
 
     function handleKeyDown(e) {
       if (e.target.closest?.("button, a, input, textarea, select, [role=button]")) return;
@@ -62,11 +62,11 @@ export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitur
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [modoLeitura]);
+  }, [readOnly]);
 
   return (
     <div>
-      <CardWrapper onClick={handleVirar} onKeyDown={handleKeyDownCard} role="button" tabIndex={0} $cor={corCategoria}>
+      <CardWrapper onClick={handleVirar} onKeyDown={handleKeyDownCard} role="button" tabIndex={0} $color={categoryColor}>
         <TopSparkle aria-hidden="true" />
         <BottomSparkle aria-hidden="true" />
         {comemorando && <CelebrationSparkle aria-hidden="true" />}
@@ -76,18 +76,18 @@ export function InteractiveFlashcard({ card, corCategoria, progresso, modoLeitur
         </StatusBadge>
         <Face>{virado ? card.answer : card.question}</Face>
         {!virado && <FlipHint>Clique para virar</FlipHint>}
-        {progresso && <Progress>{progresso}</Progress>}
+        {progress && <Progress>{progress}</Progress>}
       </CardWrapper>
 
-      {!modoLeitura && (
+      {!readOnly && (
         <Actions>
-          <ActionButton variante="secondary" icone={FaSyncAlt} onClick={handleVirar}>
+          <ActionButton variant="secondary" icon={FaSyncAlt} onClick={handleVirar}>
             Virar
           </ActionButton>
-          <ActionButton variante="primary" icone={FaCheck} onClick={handleAcertarClick}>
+          <ActionButton variant="primary" icon={FaCheck} onClick={handleAcertarClick}>
             Acertei
           </ActionButton>
-          <ActionButton variante="danger" icone={FaTimes} onClick={() => onErrar(card.id)}>
+          <ActionButton variant="danger" icon={FaTimes} onClick={() => onWrong(card.id)}>
             Errei
           </ActionButton>
         </Actions>

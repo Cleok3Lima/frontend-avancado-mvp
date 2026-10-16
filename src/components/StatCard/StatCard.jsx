@@ -1,21 +1,21 @@
 import { Card, IconWrapper, Texts, Value, Title } from "./StatCard.styles";
 import { Tooltip } from "../Tooltip/Tooltip";
 
-export function StatCard({ titulo, valor, cor, icone: Icone, dica }) {
+export function StatCard({ title, value, color, icon: Icon, hint }) {
   return (
     <Card>
       <Texts>
-        <Value>{valor}</Value>
-        <Title>{titulo}</Title>
+        <Value>{value}</Value>
+        <Title>{title}</Title>
       </Texts>
-      {Icone && (
-        <IconWrapper $cor={cor}>
-          {dica ? (
-            <Tooltip texto={dica}>
-              <Icone aria-hidden="true" />
+      {Icon && (
+        <IconWrapper $color={color}>
+          {hint ? (
+            <Tooltip text={hint}>
+              <Icon aria-hidden="true" />
             </Tooltip>
           ) : (
-            <Icone aria-hidden="true" />
+            <Icon aria-hidden="true" />
           )}
         </IconWrapper>
       )}

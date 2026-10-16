@@ -12,28 +12,28 @@ import { useFlashcards } from "../../context/FlashcardsContext";
 import { ActionButton } from "../ActionButton/ActionButton";
 import { Card, IconWrapper, Name, Stats, Actions } from "./CategoryCard.styles";
 
-const ICONES = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
+const ICONS = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
 
-export function CategoryCard({ categoria }) {
+export function CategoryCard({ category }) {
   const { getCategoryStats } = useFlashcards();
   const navigate = useNavigate();
-  const Icone = ICONES[categoria.icon] || FaQuestionCircle;
-  const stats = getCategoryStats(categoria.id);
+  const Icon = ICONS[category.icon] || FaQuestionCircle;
+  const stats = getCategoryStats(category.id);
 
   return (
     <Card>
-      <IconWrapper $cor={categoria.color}>
-        <Icone aria-hidden="true" />
+      <IconWrapper $color={category.color}>
+        <Icon aria-hidden="true" />
       </IconWrapper>
-      <Name>{categoria.name}</Name>
+      <Name>{category.name}</Name>
       <Stats>
         {stats.mastered}/{stats.total} dominados
       </Stats>
       <Actions>
-        <ActionButton variante="primary" onClick={() => navigate(`/study/${categoria.id}`)}>
+        <ActionButton variant="primary" onClick={() => navigate(`/study/${category.id}`)}>
           Estudar
         </ActionButton>
-        <ActionButton variante="ghost" onClick={() => navigate(`/cards/${categoria.id}`)}>
+        <ActionButton variant="ghost" onClick={() => navigate(`/cards/${category.id}`)}>
           Ver Cards
         </ActionButton>
       </Actions>

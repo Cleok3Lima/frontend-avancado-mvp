@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { tokens } from "../../styles/tokens";
 
-const variantes = {
+const variants = {
   primary: css`
     background-color: ${tokens.colors.sunshine};
     color: ${tokens.colors.ink};
@@ -33,7 +33,7 @@ export const Button = styled.button`
   box-shadow: ${tokens.shadow.hardSm};
   transition: transform 0.05s ease, box-shadow 0.05s ease, filter 0.15s ease;
 
-  ${(props) => variantes[props.$variante] || variantes.primary}
+  ${(props) => variants[props.$variant] || variants.primary}
 
   &:hover:not(:disabled) {
     filter: brightness(0.96);

@@ -4,7 +4,7 @@ import { tokens } from "../../styles/tokens";
 
 export const CardWrapper = styled.div`
   position: relative;
-  background-color: ${(props) => props.$cor || tokens.colors.bubblegum};
+  background-color: ${(props) => props.$color || tokens.colors.bubblegum};
   background-image: linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
   background-size: 24px 24px;
