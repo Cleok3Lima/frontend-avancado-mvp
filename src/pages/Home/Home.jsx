@@ -20,18 +20,18 @@ import {
 
 export function Home() {
   const { categories, stats, isLoading, error, reloadData, resetProgress } = useFlashcards();
-  const [modalAberto, setModalAberto] = useState(false);
-  const [mensagemSucesso, setMensagemSucesso] = useState("");
-  const timerMensagemRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const messageTimerRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(timerMensagemRef.current), []);
+  useEffect(() => () => clearTimeout(messageTimerRef.current), []);
 
-  function handleConfirmarReset() {
+  function handleConfirmReset() {
     resetProgress();
-    setModalAberto(false);
-    setMensagemSucesso("Progresso reiniciado com sucesso!");
-    clearTimeout(timerMensagemRef.current);
-    timerMensagemRef.current = setTimeout(() => setMensagemSucesso(""), 3000);
+    setIsModalOpen(false);
+    setSuccessMessage("Progresso reiniciado com sucesso!");
+    clearTimeout(messageTimerRef.current);
+    messageTimerRef.current = setTimeout(() => setSuccessMessage(""), 3000);
   }
 
   if (isLoading) {
@@ -74,11 +74,11 @@ export function Home() {
 
       <ResetRow>
         <Tooltip text="Apaga todo o progresso salvo e começa do zero">
-          <ActionButton variant="danger" icon={FaRedo} onClick={() => setModalAberto(true)}>
+          <ActionButton variant="danger" icon={FaRedo} onClick={() => setIsModalOpen(true)}>
             Reiniciar progresso
           </ActionButton>
         </Tooltip>
-        {mensagemSucesso && <SuccessMessage>{mensagemSucesso}</SuccessMessage>}
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
       </ResetRow>
 
       <CategoriesGrid>
@@ -88,11 +88,11 @@ export function Home() {
       </CategoriesGrid>
 
       <ConfirmModal
-        isOpen={modalAberto}
+        isOpen={isModalOpen}
         title="Reiniciar progresso"
         message="Isso vai apagar todo o seu progresso de estudo salvo. Essa ação não pode ser desfeita."
-        onConfirm={handleConfirmarReset}
-        onCancel={() => setModalAberto(false)}
+        onConfirm={handleConfirmReset}
+        onCancel={() => setIsModalOpen(false)}
       />
     </Wrapper>
   );

@@ -34,61 +34,61 @@ export function StudyMode() {
   const categoryCards = getCardsByCategory(categoryId);
   const categoryStats = getCategoryStats(categoryId);
 
-  const [fila, setFila] = useState([]);
-  const [inicializada, setInicializada] = useState(false);
-  const [sessao, setSessao] = useState({ acertos: 0, erros: 0 });
+  const [queue, setQueue] = useState([]);
+  const [initialized, setInitialized] = useState(false);
+  const [session, setSession] = useState({ correct: 0, wrong: 0 });
 
   useEffect(() => {
-    setFila([]);
-    setInicializada(false);
-    setSessao({ acertos: 0, erros: 0 });
+    setQueue([]);
+    setInitialized(false);
+    setSession({ correct: 0, wrong: 0 });
   }, [categoryId]);
 
   useEffect(() => {
-    if (!isLoading && !error && !inicializada) {
-      setFila(categoryCards.map((card) => card.id));
-      setInicializada(true);
+    if (!isLoading && !error && !initialized) {
+      setQueue(categoryCards.map((card) => card.id));
+      setInitialized(true);
     }
-  }, [isLoading, error, inicializada, categoryCards]);
+  }, [isLoading, error, initialized, categoryCards]);
 
-  const cardAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
+  const currentCard = initialized ? categoryCards.find((card) => card.id === queue[0]) : undefined;
 
-  const handleAcertar = useCallback(
+  const handleCorrect = useCallback(
     (cardId) => {
       markCorrect(cardId);
-      setSessao((s) => ({ ...s, acertos: s.acertos + 1 }));
-      setFila((f) => f.slice(1));
+      setSession((s) => ({ ...s, correct: s.correct + 1 }));
+      setQueue((q) => q.slice(1));
     },
     [markCorrect]
   );
 
-  const handleErrar = useCallback(
+  const handleWrong = useCallback(
     (cardId) => {
       markWrong(cardId);
-      setSessao((s) => ({ ...s, erros: s.erros + 1 }));
-      setFila((f) => [...f.slice(1), cardId]);
+      setSession((s) => ({ ...s, wrong: s.wrong + 1 }));
+      setQueue((q) => [...q.slice(1), cardId]);
     },
     [markWrong]
   );
 
-  function handleEstudarNovamente() {
-    setFila(categoryCards.map((card) => card.id));
-    setSessao({ acertos: 0, erros: 0 });
+  function handleStudyAgain() {
+    setQueue(categoryCards.map((card) => card.id));
+    setSession({ correct: 0, wrong: 0 });
   }
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (!cardAtual) return;
+      if (!currentCard) return;
       if (e.code === "ArrowRight" || e.code === "Digit1") {
-        handleAcertar(cardAtual.id);
+        handleCorrect(currentCard.id);
       } else if (e.code === "ArrowLeft" || e.code === "Digit2") {
-        handleErrar(cardAtual.id);
+        handleWrong(currentCard.id);
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [cardAtual, handleAcertar, handleErrar]);
+  }, [currentCard, handleCorrect, handleWrong]);
 
   if (isLoading) {
     return (
@@ -122,7 +122,7 @@ export function StudyMode() {
     );
   }
 
-  if (!inicializada) {
+  if (!initialized) {
     return (
       <Wrapper>
         <p>Preparando sessão de estudo...</p>
@@ -130,7 +130,7 @@ export function StudyMode() {
     );
   }
 
-  if (fila.length === 0) {
+  if (queue.length === 0) {
     return (
       <Wrapper>
         <Title>{category?.name || "Categoria"}</Title>
@@ -138,11 +138,11 @@ export function StudyMode() {
           <h2>Sessão concluída!</h2>
           <p>Você revisou todos os cards desta categoria.</p>
           <CompletionStats>
-            <StatCard title="Acertos" value={sessao.acertos} color={tokens.colors.mint} icon={FaCheck} />
-            <StatCard title="Erros" value={sessao.erros} color={tokens.colors.coral} icon={FaTimes} />
+            <StatCard title="Acertos" value={session.correct} color={tokens.colors.mint} icon={FaCheck} />
+            <StatCard title="Erros" value={session.wrong} color={tokens.colors.coral} icon={FaTimes} />
           </CompletionStats>
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
-            <ActionButton variant="secondary" onClick={handleEstudarNovamente}>
+            <ActionButton variant="secondary" onClick={handleStudyAgain}>
               Estudar novamente
             </ActionButton>
             <ActionButton variant="primary" onClick={() => navigate("/")}>
@@ -163,11 +163,11 @@ export function StudyMode() {
           <CategoryBadge>{category?.name}</CategoryBadge>
           <CardArea>
             <InteractiveFlashcard
-              card={cardAtual}
+              card={currentCard}
               categoryColor={category?.color}
               progress={`${categoryStats.mastered}/${categoryStats.total} dominados`}
-              onCorrect={handleAcertar}
-              onWrong={handleErrar}
+              onCorrect={handleCorrect}
+              onWrong={handleWrong}
             />
           </CardArea>
 
@@ -189,9 +189,9 @@ export function StudyMode() {
         <Panel style={{ textAlign: "left" }}>
           <StatsHeading>Estatísticas</StatsHeading>
           <StatsRow>
-            <StatCard title="Restantes" value={fila.length} color={tokens.colors.periwinkle} icon={FaClock} />
-            <StatCard title="Acertos" value={sessao.acertos} color={tokens.colors.mint} icon={FaCheck} />
-            <StatCard title="Erros" value={sessao.erros} color={tokens.colors.coral} icon={FaTimes} />
+            <StatCard title="Restantes" value={queue.length} color={tokens.colors.periwinkle} icon={FaClock} />
+            <StatCard title="Acertos" value={session.correct} color={tokens.colors.mint} icon={FaCheck} />
+            <StatCard title="Erros" value={session.wrong} color={tokens.colors.coral} icon={FaTimes} />
           </StatsRow>
         </Panel>
       </Layout>

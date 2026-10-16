@@ -6,10 +6,10 @@ import { HeaderWrapper, LogoWrapper, LogoBadge, Logo, Nav, NavLinkStyled } from 
 export function NavigationHeader() {
   const location = useLocation();
   const { categories } = useFlashcards();
-  const categoriaDaRota =
+  const routeCategoryId =
     matchPath("/study/:categoryId", location.pathname)?.params.categoryId ??
     matchPath("/cards/:categoryId", location.pathname)?.params.categoryId;
-  const destinoId = categories.some((c) => c.id === categoriaDaRota) ? categoriaDaRota : categories[0]?.id;
+  const targetCategoryId = categories.some((c) => c.id === routeCategoryId) ? routeCategoryId : categories[0]?.id;
 
   const isHomeActive = location.pathname === "/";
   const isStudyActive = location.pathname.startsWith("/study");
@@ -28,16 +28,16 @@ export function NavigationHeader() {
           Início
         </NavLinkStyled>
         <NavLinkStyled
-          to={destinoId ? `/study/${destinoId}` : "#"}
+          to={targetCategoryId ? `/study/${targetCategoryId}` : "#"}
           $active={isStudyActive}
-          $disabled={!destinoId}
+          $disabled={!targetCategoryId}
         >
           Estudar
         </NavLinkStyled>
         <NavLinkStyled
-          to={destinoId ? `/cards/${destinoId}` : "#"}
+          to={targetCategoryId ? `/cards/${targetCategoryId}` : "#"}
           $active={isAllCardsActive}
-          $disabled={!destinoId}
+          $disabled={!targetCategoryId}
         >
           Todos os Cards
         </NavLinkStyled>

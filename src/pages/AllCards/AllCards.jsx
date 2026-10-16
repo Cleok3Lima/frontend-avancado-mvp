@@ -19,7 +19,7 @@ import {
   CardsGrid,
 } from "./AllCards.styles";
 
-const FILTROS_STATUS = [
+const STATUS_FILTERS = [
   { id: "todos", label: "Todos" },
   { id: "new", label: "Novo" },
   { id: "in_progress", label: "Em progresso" },
@@ -31,19 +31,19 @@ export function AllCards() {
   const navigate = useNavigate();
   const { categories, getCardsByCategory, getCategoryStats, isLoading, error, reloadData } = useFlashcards();
 
-  const [busca, setBusca] = useState("");
-  const [statusFiltro, setStatusFiltro] = useState("todos");
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("todos");
 
   const category = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
   const stats = getCategoryStats(categoryId);
 
-  const cardsFiltrados = categoryCards.filter((card) => {
-    const correspondeBusca =
-      card.question.toLowerCase().includes(busca.toLowerCase()) ||
-      card.answer.toLowerCase().includes(busca.toLowerCase());
-    const correspondeStatus = statusFiltro === "todos" || card.status === statusFiltro;
-    return correspondeBusca && correspondeStatus;
+  const filteredCards = categoryCards.filter((card) => {
+    const matchesSearch =
+      card.question.toLowerCase().includes(search.toLowerCase()) ||
+      card.answer.toLowerCase().includes(search.toLowerCase());
+    const matchesStatus = statusFilter === "todos" || card.status === statusFilter;
+    return matchesSearch && matchesStatus;
   });
 
   if (isLoading) {
@@ -93,28 +93,28 @@ export function AllCards() {
           <input
             type="text"
             placeholder="Buscar por pergunta ou resposta..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </SearchField>
         <StatusFilterRow>
-          {FILTROS_STATUS.map((filtro) => (
+          {STATUS_FILTERS.map((option) => (
             <ActionButton
-              key={filtro.id}
-              variant={statusFiltro === filtro.id ? "primary" : "secondary"}
-              onClick={() => setStatusFiltro(filtro.id)}
+              key={option.id}
+              variant={statusFilter === option.id ? "primary" : "secondary"}
+              onClick={() => setStatusFilter(option.id)}
             >
-              {filtro.label}
+              {option.label}
             </ActionButton>
           ))}
         </StatusFilterRow>
       </Filters>
 
-      {cardsFiltrados.length === 0 ? (
+      {filteredCards.length === 0 ? (
         <EmptyState message="Nenhum card encontrado com esses filtros" />
       ) : (
         <CardsGrid>
-          {cardsFiltrados.map((card) => (
+          {filteredCards.map((card) => (
             <InteractiveFlashcard key={card.id} card={card} categoryColor={category?.color} readOnly />
           ))}
         </CardsGrid>
