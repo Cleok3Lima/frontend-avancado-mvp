@@ -1,13 +1,23 @@
-import * as FaIcons from "react-icons/fa";
+import {
+  FaReact,
+  FaJs,
+  FaSitemap,
+  FaDatabase,
+  FaHtml5,
+  FaGitAlt,
+  FaQuestionCircle,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { BotaoAcao } from "../BotaoAcao/BotaoAcao";
 import { Card, IconWrapper, Nome, Stats, Acoes } from "./CategoryCard.styles";
 
+const ICONES = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
+
 export function CategoryCard({ categoria }) {
   const { getCategoryStats } = useFlashcards();
   const navigate = useNavigate();
-  const Icone = FaIcons[categoria.icon] || FaIcons.FaQuestionCircle;
+  const Icone = ICONES[categoria.icon] || FaQuestionCircle;
   const stats = getCategoryStats(categoria.id);
 
   return (
