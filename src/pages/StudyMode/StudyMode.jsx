@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaKeyboard, FaClock, FaCheck, FaTimes } from "react-icons/fa";
 import { useFlashcards } from "../../context/FlashcardsContext";
@@ -51,17 +51,23 @@ export function StudyMode() {
 
   const cardAtual = inicializada ? categoryCards.find((card) => card.id === fila[0]) : undefined;
 
-  function handleAcertar(cardId) {
-    markCorrect(cardId);
-    setSessao((s) => ({ ...s, acertos: s.acertos + 1 }));
-    setFila((f) => f.slice(1));
-  }
+  const handleAcertar = useCallback(
+    (cardId) => {
+      markCorrect(cardId);
+      setSessao((s) => ({ ...s, acertos: s.acertos + 1 }));
+      setFila((f) => f.slice(1));
+    },
+    [markCorrect]
+  );
 
-  function handleErrar(cardId) {
-    markWrong(cardId);
-    setSessao((s) => ({ ...s, erros: s.erros + 1 }));
-    setFila((f) => [...f.slice(1), cardId]);
-  }
+  const handleErrar = useCallback(
+    (cardId) => {
+      markWrong(cardId);
+      setSessao((s) => ({ ...s, erros: s.erros + 1 }));
+      setFila((f) => [...f.slice(1), cardId]);
+    },
+    [markWrong]
+  );
 
   function handleEstudarNovamente() {
     setFila(categoryCards.map((card) => card.id));
@@ -80,7 +86,7 @@ export function StudyMode() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [cardAtual]);
+  }, [cardAtual, handleAcertar, handleErrar]);
 
   if (isLoading) {
     return (
