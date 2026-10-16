@@ -10,7 +10,6 @@ export const Card = styled.div`
   border: 2px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.sm};
   box-shadow: ${tokens.shadow.hardSm};
-  overflow: hidden;
 `;
 
 export const Texts = styled.div`
@@ -44,4 +43,5 @@ export const IconWrapper = styled.div`
   color: ${tokens.colors.ink};
   background-color: ${(props) => props.$cor || tokens.colors.periwinkle};
   border-left: 2px solid ${tokens.colors.ink};
+  border-radius: 0 calc(${tokens.radii.sm} - 2px) calc(${tokens.radii.sm} - 2px) 0;
 `;
