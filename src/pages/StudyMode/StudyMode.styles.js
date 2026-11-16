@@ -41,6 +41,10 @@ export const Panel = styled.div`
   }
 `;
 
+export const StatsPanel = styled(Panel)`
+  text-align: left;
+`;
+
 export const Divider = styled.hr`
   border: none;
   border-top: 2px solid ${tokens.colors.ink};
@@ -84,7 +88,6 @@ export const CompletionStats = styled.div`
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
 export const ShortcutsHint = styled.div`
@@ -101,4 +104,11 @@ export const CompletionBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+`;
+
+export const CompletionActions = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 `;

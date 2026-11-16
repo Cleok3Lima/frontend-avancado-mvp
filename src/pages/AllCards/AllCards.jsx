@@ -20,7 +20,7 @@ import {
 } from "./AllCards.styles";
 
 const STATUS_FILTERS = [
-  { id: "todos", label: "Todos" },
+  { id: "all", label: "Todos" },
   { id: "new", label: "Novo" },
   { id: "in_progress", label: "Em progresso" },
   { id: "mastered", label: "Dominado" },
@@ -32,7 +32,7 @@ export function AllCards() {
   const { categories, getCardsByCategory, getCategoryStats, isLoading, error, reloadData } = useFlashcards();
 
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("todos");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const category = categories.find((c) => c.id === categoryId);
   const categoryCards = getCardsByCategory(categoryId);
@@ -42,7 +42,7 @@ export function AllCards() {
     const matchesSearch =
       card.question.toLowerCase().includes(search.toLowerCase()) ||
       card.answer.toLowerCase().includes(search.toLowerCase());
-    const matchesStatus = statusFilter === "todos" || card.status === statusFilter;
+    const matchesStatus = statusFilter === "all" || card.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 

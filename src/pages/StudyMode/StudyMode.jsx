@@ -15,6 +15,7 @@ import {
   Title,
   Layout,
   Panel,
+  StatsPanel,
   Divider,
   CategoryBadge,
   CardArea,
@@ -23,6 +24,7 @@ import {
   CompletionStats,
   ShortcutsHint,
   CompletionBox,
+  CompletionActions,
 } from "./StudyMode.styles";
 
 export function StudyMode() {
@@ -141,14 +143,14 @@ export function StudyMode() {
             <StatCard title="Acertos" value={session.correct} color={tokens.colors.mint} icon={FaCheck} />
             <StatCard title="Erros" value={session.wrong} color={tokens.colors.coral} icon={FaTimes} />
           </CompletionStats>
-          <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
+          <CompletionActions>
             <ActionButton variant="secondary" onClick={handleStudyAgain}>
               Estudar novamente
             </ActionButton>
             <ActionButton variant="primary" onClick={() => navigate("/")}>
               Voltar para Início
             </ActionButton>
-          </div>
+          </CompletionActions>
         </CompletionBox>
       </Wrapper>
     );
@@ -186,14 +188,14 @@ export function StudyMode() {
           </ActionButton>
         </Panel>
 
-        <Panel style={{ textAlign: "left" }}>
+        <StatsPanel>
           <StatsHeading>Estatísticas</StatsHeading>
           <StatsRow>
             <StatCard title="Restantes" value={queue.length} color={tokens.colors.periwinkle} icon={FaClock} />
             <StatCard title="Acertos" value={session.correct} color={tokens.colors.mint} icon={FaCheck} />
             <StatCard title="Erros" value={session.wrong} color={tokens.colors.coral} icon={FaTimes} />
           </StatsRow>
-        </Panel>
+        </StatsPanel>
       </Layout>
     </Wrapper>
   );
