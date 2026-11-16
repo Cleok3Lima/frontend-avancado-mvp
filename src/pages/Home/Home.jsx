@@ -7,6 +7,7 @@ import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { ErrorState } from "../../components/ErrorState/ErrorState";
+import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
 import { tokens } from "../../styles/tokens";
 import {
   Wrapper,
@@ -15,7 +16,6 @@ import {
   ResetRow,
   SuccessMessage,
   CategoriesGrid,
-  LoadingMessage,
 } from "./Home.styles";
 
 export function Home() {
@@ -37,7 +37,7 @@ export function Home() {
   if (isLoading) {
     return (
       <Wrapper>
-        <LoadingMessage>Carregando categorias...</LoadingMessage>
+        <LoadingSpinner message="Carregando categorias..." />
       </Wrapper>
     );
   }

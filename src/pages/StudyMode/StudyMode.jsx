@@ -7,6 +7,7 @@ import { StatCard } from "../../components/StatCard/StatCard";
 import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
 import { ErrorState } from "../../components/ErrorState/ErrorState";
+import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
 import { NotFound } from "../NotFound/NotFound";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 import { tokens } from "../../styles/tokens";
@@ -95,7 +96,7 @@ export function StudyMode() {
   if (isLoading) {
     return (
       <Wrapper>
-        <p>Carregando cards...</p>
+        <LoadingSpinner message="Carregando cards..." />
       </Wrapper>
     );
   }
@@ -127,7 +128,7 @@ export function StudyMode() {
   if (!initialized) {
     return (
       <Wrapper>
-        <p>Preparando sessão de estudo...</p>
+        <LoadingSpinner message="Preparando sessão de estudo..." />
       </Wrapper>
     );
   }

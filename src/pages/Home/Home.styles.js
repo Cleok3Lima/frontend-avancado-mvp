@@ -41,11 +41,3 @@ export const CategoriesGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
 `;
-
-export const LoadingMessage = styled.p`
-  text-align: center;
-  color: ${tokens.colors.ink};
-  opacity: 0.7;
-  font-size: 1.1rem;
-  padding: 3rem 0;
-`;
