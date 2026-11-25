@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 4rem 1.5rem;
+  gap: ${tokens.spacing.md};
+  padding: 4rem ${tokens.spacing.xl};
   text-align: center;
 `;
 

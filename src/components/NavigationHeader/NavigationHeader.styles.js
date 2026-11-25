@@ -6,11 +6,11 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: ${tokens.spacing.md} ${tokens.spacing.xl};
   background-color: ${tokens.colors.canvas};
   border-bottom: 3px solid ${tokens.colors.ink};
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: ${tokens.spacing.sm};
 
   @media (max-width: 640px) {
     flex-direction: column;
@@ -53,7 +53,7 @@ export const Nav = styled.nav`
 export const NavLinkStyled = styled(Link)`
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: ${tokens.spacing.xs} ${tokens.spacing.md};
   border: 2px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.pill};
   text-decoration: none;

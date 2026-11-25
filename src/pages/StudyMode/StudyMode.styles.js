@@ -4,23 +4,23 @@ import { tokens } from "../../styles/tokens";
 export const Wrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: ${tokens.spacing.xl};
 
   @media (max-width: 640px) {
-    padding: 1rem;
+    padding: ${tokens.spacing.md};
   }
 `;
 
 export const Title = styled.h1`
   font-size: 1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: ${tokens.spacing.md};
   text-align: center;
 `;
 
 export const Layout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: ${tokens.spacing.xl};
 
   @media (min-width: 1024px) {
     grid-template-columns: 65% 1fr;
@@ -33,11 +33,11 @@ export const Panel = styled.div`
   border: 3px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.sm};
   box-shadow: ${tokens.shadow.hard};
-  padding: 1.5rem;
+  padding: ${tokens.spacing.xl};
   text-align: center;
 
   @media (max-width: 640px) {
-    padding: 1rem;
+    padding: ${tokens.spacing.md};
   }
 `;
 
@@ -49,7 +49,7 @@ export const Divider = styled.hr`
   border: none;
   border-top: 2px solid ${tokens.colors.ink};
   opacity: 0.15;
-  margin: 1.25rem 0;
+  margin: ${tokens.spacing.lg} 0;
 `;
 
 export const CategoryBadge = styled.span`
@@ -64,19 +64,19 @@ export const CategoryBadge = styled.span`
 `;
 
 export const CardArea = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: ${tokens.spacing.xs};
 `;
 
 export const StatsHeading = styled.h2`
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: ${tokens.spacing.md};
   text-align: left;
 `;
 
 export const StatsRow = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: ${tokens.spacing.sm};
 
   @media (min-width: 641px) and (max-width: 1023px) {
     flex-direction: row;
@@ -86,7 +86,7 @@ export const StatsRow = styled.div`
 
 export const CompletionStats = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: ${tokens.spacing.sm};
   flex-wrap: wrap;
 `;
 
@@ -94,7 +94,7 @@ export const ShortcutsHint = styled.div`
   color: ${tokens.colors.ink};
   opacity: 0.7;
   font-size: 0.85rem;
-  margin: 1rem 0;
+  margin: ${tokens.spacing.md} 0;
   display: flex;
   justify-content: center;
 `;
@@ -103,12 +103,12 @@ export const CompletionBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: ${tokens.spacing.sm};
 `;
 
 export const CompletionActions = styled.div`
   display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: ${tokens.spacing.sm};
+  margin-top: ${tokens.spacing.md};
   flex-wrap: wrap;
 `;

@@ -20,14 +20,14 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: ${tokens.spacing.xs};
   cursor: pointer;
   text-align: center;
   overflow: hidden;
 
   @media (max-width: 640px) {
     min-height: 160px;
-    padding: 1.25rem;
+    padding: ${tokens.spacing.lg};
   }
 `;
 
@@ -121,7 +121,7 @@ export const Progress = styled.span`
 export const Actions = styled.div`
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: ${tokens.spacing.sm};
+  margin-top: ${tokens.spacing.md};
   flex-wrap: wrap;
 `;

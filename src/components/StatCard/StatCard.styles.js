@@ -17,7 +17,7 @@ export const Texts = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 0.15rem;
-  padding: 0.9rem 1rem;
+  padding: 0.9rem ${tokens.spacing.md};
   flex: 1;
 `;
 

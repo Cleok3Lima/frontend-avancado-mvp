@@ -12,8 +12,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 3rem 1rem;
+  gap: ${tokens.spacing.md};
+  padding: 3rem ${tokens.spacing.md};
   text-align: center;
 `;
 

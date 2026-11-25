@@ -13,6 +13,14 @@ export const tokens = {
     display: "'Space Grotesk', system-ui, sans-serif",
     body: "'Inter', system-ui, sans-serif",
   },
+  spacing: {
+    xs: "0.5rem",
+    sm: "0.75rem",
+    md: "1rem",
+    lg: "1.25rem",
+    xl: "1.5rem",
+    xxl: "2rem",
+  },
   radii: {
     sm: "0.75rem",
     pill: "999px",

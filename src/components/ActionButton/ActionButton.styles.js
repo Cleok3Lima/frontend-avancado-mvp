@@ -23,8 +23,8 @@ const variants = {
 export const Button = styled.button`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.25rem;
+  gap: ${tokens.spacing.xs};
+  padding: 0.6rem ${tokens.spacing.lg};
   border: 2px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.pill};
   font-size: 0.95rem;

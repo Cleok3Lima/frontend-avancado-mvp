@@ -4,21 +4,21 @@ import { tokens } from "../../styles/tokens";
 export const Wrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: ${tokens.spacing.xl};
 
   @media (max-width: 640px) {
-    padding: 1rem;
+    padding: ${tokens.spacing.md};
   }
 `;
 
 export const Title = styled.h1`
   color: ${tokens.colors.ink};
-  margin-bottom: 1.5rem;
+  margin-bottom: ${tokens.spacing.xl};
 `;
 
 export const StatsRow = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: ${tokens.spacing.md};
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
 `;
@@ -26,7 +26,7 @@ export const StatsRow = styled.div`
 export const ResetRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: ${tokens.spacing.md};
   margin-bottom: 2rem;
   flex-wrap: wrap;
 `;
@@ -39,5 +39,5 @@ export const SuccessMessage = styled.span`
 export const CategoriesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
+  gap: ${tokens.spacing.lg};
 `;

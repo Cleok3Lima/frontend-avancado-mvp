@@ -16,13 +16,13 @@ export const ModalBox = styled.div`
   border: 3px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.sm};
   box-shadow: ${tokens.shadow.hard};
-  padding: 1.5rem;
+  padding: ${tokens.spacing.xl};
   max-width: 360px;
   width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: ${tokens.spacing.xs};
   text-align: center;
 `;
 
@@ -45,6 +45,6 @@ export const Message = styled.p`
 
 export const Actions = styled.div`
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
+  gap: ${tokens.spacing.sm};
+  margin-top: ${tokens.spacing.sm};
 `;

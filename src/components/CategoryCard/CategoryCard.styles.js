@@ -5,12 +5,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: ${tokens.spacing.xs};
   background-color: ${tokens.colors.surface};
   border: 2px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.sm};
   box-shadow: ${tokens.shadow.hardSm};
-  padding: 1.25rem 1rem;
+  padding: ${tokens.spacing.lg} ${tokens.spacing.md};
   text-align: center;
 `;
 
@@ -40,7 +40,7 @@ export const Stats = styled.span`
 
 export const Actions = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: ${tokens.spacing.xs};
   flex-wrap: wrap;
   justify-content: center;
 `;
