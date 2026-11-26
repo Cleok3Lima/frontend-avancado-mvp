@@ -20,14 +20,16 @@ export const StatsRow = styled.div`
   display: flex;
   gap: ${tokens.spacing.md};
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: ${tokens.spacing.xxl};
 `;
 
 export const ResetRow = styled.div`
   display: flex;
   align-items: center;
   gap: ${tokens.spacing.md};
-  margin-bottom: 2rem;
+  margin-top: ${tokens.spacing.xxl};
+  padding-top: ${tokens.spacing.xl};
+  border-top: 2px solid rgba(26, 26, 26, 0.15);
   flex-wrap: wrap;
 `;
 
@@ -38,6 +40,6 @@ export const SuccessMessage = styled.span`
 
 export const CategoriesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: ${tokens.spacing.lg};
 `;

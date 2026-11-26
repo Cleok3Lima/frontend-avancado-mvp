@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useFlashcards } from "../../context/FlashcardsContext";
 import { ActionButton } from "../ActionButton/ActionButton";
-import { Card, IconWrapper, Name, Stats, Actions } from "./CategoryCard.styles";
+import { Card, IconWrapper, Name, EnergyBar, EnergyCell, Stats, Actions } from "./CategoryCard.styles";
 
 const ICONS = { FaReact, FaJs, FaSitemap, FaDatabase, FaHtml5, FaGitAlt };
 
@@ -26,6 +26,11 @@ export function CategoryCard({ category }) {
         <Icon aria-hidden="true" />
       </IconWrapper>
       <Name>{category.name}</Name>
+      <EnergyBar aria-hidden="true">
+        {Array.from({ length: stats.total }, (_, index) => (
+          <EnergyCell key={index} $color={index < stats.mastered ? category.color : undefined} />
+        ))}
+      </EnergyBar>
       <Stats>
         {stats.mastered}/{stats.total} dominados
       </Stats>

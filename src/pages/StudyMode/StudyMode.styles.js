@@ -54,13 +54,16 @@ export const Divider = styled.hr`
 
 export const CategoryBadge = styled.span`
   display: inline-flex;
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 0.3rem 0.85rem;
+  font-family: ${tokens.fonts.display};
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: ${tokens.colors.ink};
+  padding: 0.35rem ${tokens.spacing.lg};
   border: 2px solid ${tokens.colors.ink};
   border-radius: ${tokens.radii.pill};
-  background-color: ${tokens.colors.surface};
-  margin-bottom: 1rem;
+  background-color: ${(props) => props.$color || tokens.colors.surface};
+  box-shadow: ${tokens.shadow.hardSm};
+  margin-bottom: ${tokens.spacing.lg};
 `;
 
 export const CardArea = styled.div`
@@ -78,9 +81,17 @@ export const StatsRow = styled.div`
   flex-direction: column;
   gap: ${tokens.spacing.sm};
 
+  & > * {
+    flex: none;
+  }
+
   @media (min-width: 641px) and (max-width: 1023px) {
     flex-direction: row;
     flex-wrap: wrap;
+
+    & > * {
+      flex: 1 1 160px;
+    }
   }
 `;
 

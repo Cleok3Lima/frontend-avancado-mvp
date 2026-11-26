@@ -1,34 +1,64 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FaStar } from "react-icons/fa";
 import { tokens } from "../../styles/tokens";
 
 export const CardWrapper = styled.div`
   position: relative;
-  background-color: ${(props) => props.$color || tokens.colors.bubblegum};
-  background-image: linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border: 3px solid ${tokens.colors.ink};
-  border-radius: ${tokens.radii.sm};
-  box-shadow: ${tokens.shadow.hard};
-  min-height: 220px;
   width: 100%;
+  height: 100%;
   max-width: 480px;
   margin: 0 auto;
-  padding: 1.5rem;
+  perspective: 1200px;
+  cursor: pointer;
+  border-radius: ${tokens.radii.sm};
+`;
+
+export const CardInner = styled.div`
+  display: grid;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: ${(props) => (props.$flipped ? "rotateY(180deg)" : "none")};
+`;
+
+const face = css`
+  grid-area: 1 / 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${tokens.spacing.xs};
-  cursor: pointer;
+  min-height: 220px;
+  padding: ${tokens.spacing.xl};
+  border: 3px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.sm};
+  box-shadow: ${tokens.shadow.hard};
   text-align: center;
   overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-size: 24px 24px;
 
   @media (max-width: 640px) {
     min-height: 160px;
     padding: ${tokens.spacing.lg};
   }
+`;
+
+export const Front = styled.div`
+  ${face}
+  background-color: ${(props) => props.$color || tokens.colors.bubblegum};
+  background-image: linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+`;
+
+export const Back = styled.div`
+  ${face}
+  transform: rotateY(180deg);
+  background-color: ${tokens.colors.surface};
+  background-image: linear-gradient(rgba(26, 26, 26, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.06) 1px, transparent 1px);
 `;
 
 export const TopSparkle = styled(FaStar)`
@@ -53,6 +83,7 @@ export const CelebrationSparkle = styled(FaStar)`
   position: absolute;
   top: 0.85rem;
   left: 1rem;
+  z-index: 1;
   font-size: 1.3rem;
   color: ${tokens.colors.sunshine};
   animation: pop 0.4s ease;
@@ -89,6 +120,10 @@ export const StatusBadge = styled.span`
   border-radius: ${tokens.radii.pill};
   background-color: ${tokens.colors.surface};
   color: ${tokens.colors.ink};
+`;
+
+export const AnswerBadge = styled(StatusBadge)`
+  background-color: ${(props) => props.$color || tokens.colors.bubblegum};
 `;
 
 export const Face = styled.p`

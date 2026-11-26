@@ -72,6 +72,12 @@ export function Home() {
         />
       </StatsRow>
 
+      <CategoriesGrid>
+        {categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
+        ))}
+      </CategoriesGrid>
+
       <ResetRow>
         <Tooltip text="Apaga todo o progresso salvo e começa do zero">
           <ActionButton variant="danger" icon={FaRedo} onClick={() => setIsModalOpen(true)}>
@@ -80,12 +86,6 @@ export function Home() {
         </Tooltip>
         {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
       </ResetRow>
-
-      <CategoriesGrid>
-        {categories.map((category) => (
-          <CategoryCard key={category.id} category={category} />
-        ))}
-      </CategoriesGrid>
 
       <ConfirmModal
         isOpen={isModalOpen}

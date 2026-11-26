@@ -159,11 +159,11 @@ export function StudyMode() {
 
   return (
     <Wrapper>
-      <Title>{category?.name || "Categoria"}</Title>
-
       <Layout>
         <Panel>
-          <CategoryBadge>{category?.name}</CategoryBadge>
+          <CategoryBadge as="h1" $color={category?.color}>
+            {category?.name || "Categoria"}
+          </CategoryBadge>
           <CardArea>
             <InteractiveFlashcard
               card={currentCard}

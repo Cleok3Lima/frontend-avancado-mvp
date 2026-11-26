@@ -32,6 +32,24 @@ export const Name = styled.h3`
   color: ${tokens.colors.ink};
 `;
 
+export const EnergyBar = styled.div`
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  max-width: 240px;
+  height: 16px;
+  margin-top: 0.25rem;
+  background-color: ${tokens.colors.ink};
+  border: 2px solid ${tokens.colors.ink};
+  border-radius: ${tokens.radii.pill};
+  overflow: hidden;
+`;
+
+export const EnergyCell = styled.span`
+  flex: 1;
+  background-color: ${(props) => props.$color || tokens.colors.surface};
+`;
+
 export const Stats = styled.span`
   font-size: 0.85rem;
   color: ${tokens.colors.ink};
@@ -41,6 +59,11 @@ export const Stats = styled.span`
 export const Actions = styled.div`
   display: flex;
   gap: ${tokens.spacing.xs};
-  flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
+  margin-top: ${tokens.spacing.xs};
+
+  & > * {
+    flex: 1;
+    justify-content: center;
+  }
 `;

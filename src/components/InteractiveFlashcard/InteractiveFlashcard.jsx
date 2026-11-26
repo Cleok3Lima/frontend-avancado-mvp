@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FaCheck, FaTimes, FaSyncAlt, FaStar } from "react-icons/fa";
 import { ActionButton } from "../ActionButton/ActionButton";
 import {
   CardWrapper,
+  CardInner,
+  Front,
+  Back,
   TopSparkle,
   BottomSparkle,
   CelebrationSparkle,
   StatusBadge,
+  AnswerBadge,
   Face,
   FlipHint,
   Progress,
@@ -20,12 +24,9 @@ const STATUS_LABEL = {
 };
 
 export function InteractiveFlashcard({ card, categoryColor, progress, readOnly = false, onCorrect, onWrong }) {
-  const [flipped, setFlipped] = useState(false);
+  const [flippedCardId, setFlippedCardId] = useState(null);
   const [celebrating, setCelebrating] = useState(false);
-
-  useEffect(() => {
-    setFlipped(false);
-  }, [card.id]);
+  const flipped = flippedCardId === card.id;
 
   useEffect(() => {
     if (!celebrating) return;
@@ -33,9 +34,9 @@ export function InteractiveFlashcard({ card, categoryColor, progress, readOnly =
     return () => clearTimeout(timer);
   }, [celebrating]);
 
-  function handleFlip() {
-    setFlipped((current) => !current);
-  }
+  const handleFlip = useCallback(() => {
+    setFlippedCardId((current) => (current === card.id ? null : card.id));
+  }, [card.id]);
 
   function handleKeyDownCard(e) {
     if (e.code === "Space" || e.code === "Enter") {
@@ -62,21 +63,30 @@ export function InteractiveFlashcard({ card, categoryColor, progress, readOnly =
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [readOnly]);
+  }, [readOnly, handleFlip]);
 
   return (
     <div>
-      <CardWrapper onClick={handleFlip} onKeyDown={handleKeyDownCard} role="button" tabIndex={0} $color={categoryColor}>
-        <TopSparkle aria-hidden="true" />
-        <BottomSparkle aria-hidden="true" />
+      <CardWrapper onClick={handleFlip} onKeyDown={handleKeyDownCard} role="button" tabIndex={0}>
         {celebrating && <CelebrationSparkle aria-hidden="true" />}
-        <StatusBadge $status={card.status}>
-          {card.status === "mastered" && <FaStar aria-hidden="true" />}
-          {STATUS_LABEL[card.status]}
-        </StatusBadge>
-        <Face>{flipped ? card.answer : card.question}</Face>
-        {!flipped && <FlipHint>Clique para virar</FlipHint>}
-        {progress && <Progress>{progress}</Progress>}
+        <CardInner key={card.id} $flipped={flipped}>
+          <Front $color={categoryColor} aria-hidden={flipped}>
+            <TopSparkle aria-hidden="true" />
+            <BottomSparkle aria-hidden="true" />
+            <StatusBadge>
+              {card.status === "mastered" && <FaStar aria-hidden="true" />}
+              {STATUS_LABEL[card.status]}
+            </StatusBadge>
+            <Face>{card.question}</Face>
+            <FlipHint>Clique para virar</FlipHint>
+            {progress && <Progress>{progress}</Progress>}
+          </Front>
+          <Back aria-hidden={!flipped}>
+            <AnswerBadge $color={categoryColor}>Resposta</AnswerBadge>
+            <Face>{card.answer}</Face>
+            <FlipHint>Clique para ver a pergunta</FlipHint>
+          </Back>
+        </CardInner>
       </CardWrapper>
 
       {!readOnly && (
